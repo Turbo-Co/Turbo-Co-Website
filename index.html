@@ -3,67 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Description of your website for SEO purposes">
-    <meta name="keywords" content="keyword1, keyword2, keyword3">
-    <meta name="author" content="Your Name">
-    <!-- Accessibility Improvements -->
+    <meta name="description" content="Turbo&Co Racing - The premier racing experience, offering thrilling competition and unmatched automobiles.">
+    <meta name="keywords" content="Turbo&Co, Racing, Cars, Motorsports">
+    <meta name="author" content="Turbo-Co">
+    <link rel="preload" href="/fonts/optimized-font.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <title>Turbo&Co Racing</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Your JavaScript for accessibility improvements
-        });
-    </script>
-    <!-- Hamburger Menu for Mobile Navigation -->
-    <style>
-        /* Styles for the hamburger menu */
-        .hamburger {
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-        }
-    </style>
+    <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="hamburger">☰</div>
-    <nav id="mobile-nav" style="display:none;">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="logo"><a href="index.html">Turbo&Co Racing</a></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="http://facebook.com/turboracing" rel="noopener noreferrer" target="_blank">Facebook</a></li>
+                <li><a href="http://twitter.com/turboracing" rel="noopener noreferrer" target="_blank">Twitter</a></li>
+                <li><a href="http://instagram.com/turboracing" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <main>
+        <section id="about">
+            <h1>About Turbo&Co Racing</h1>
+            <p>Welcome to Turbo&Co Racing, where speed meets passion!</p>
+        </section>
+        <section id="services">
+            <h2>Our Services</h2>
+            <p>We offer a range of racing services including track days, car rentals, and more.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Get in touch via our social media or contact form.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Turbo&Co Racing. All rights reserved.</p>
+    </footer>
     <script>
-        // Toggle mobile navigation
-        document.querySelector('.hamburger').addEventListener('click', function() {
-            const nav = document.getElementById('mobile-nav');
-            nav.style.display = nav.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
-    <!-- Motion Preferences Support -->
-    <style>
-        @media (prefers-reduced-motion: reduce) {
-            /* Add styles for reduced motion preferences here */
-        }
-    </style>
-    <!-- Optimized Font Loading -->
-    <link rel="preload" href="fonts/font.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <!-- Improved JavaScript Timer with Seconds -->
-    <script>
-        // Implementing a refined timer that counts seconds
-        let timer = setInterval(function() {
-            console.log('Timer tick: ' + new Date().toLocaleTimeString());
+        // JavaScript timer to display seconds
+        let timer = setInterval(() => {
+            let now = new Date();
+            document.getElementById('timer').innerText = now.getSeconds();
         }, 1000);
     </script>
-    <!-- Corrected Social Media Links with Security Attributes -->
-    <footer>
-        <a href="https://twitter.com/yourprofile" rel="noopener noreferrer" target="_blank">Twitter</a>
-        <a href="https://facebook.com/yourprofile" rel="noopener noreferrer" target="_blank">Facebook</a>
-    </footer>
 </body>
 </html>
