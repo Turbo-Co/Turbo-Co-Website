@@ -1,58 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Turbo&Co Racing - The premier racing experience, offering thrilling competition and unmatched automobiles.">
-    <meta name="keywords" content="Turbo&Co, Racing, Cars, Motorsports">
-    <meta name="author" content="Turbo-Co">
-    <link rel="preload" href="/fonts/optimized-font.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-    <title>Turbo&Co Racing</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
-</head>
-<body>
-    <header>
-        <div class="logo"><a href="index.html">Turbo&Co Racing</a></div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="http://facebook.com/turboracing" rel="noopener noreferrer" target="_blank">Facebook</a></li>
-                <li><a href="http://twitter.com/turboracing" rel="noopener noreferrer" target="_blank">Twitter</a></li>
-                <li><a href="http://instagram.com/turboracing" rel="noopener noreferrer" target="_blank">Instagram</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
-    <main>
-        <section id="about">
-            <h1>About Turbo&Co Racing</h1>
-            <p>Welcome to Turbo&Co Racing, where speed meets passion!</p>
-        </section>
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>We offer a range of racing services including track days, car rentals, and more.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Get in touch via our social media or contact form.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Turbo&Co Racing. All rights reserved.</p>
-    </footer>
+    <title>Turbo Co Website</title>
     <script>
-        // JavaScript timer to display seconds
-        let timer = setInterval(() => {
-            let now = new Date();
-            document.getElementById('timer').innerText = now.getSeconds();
-        }, 1000);
+        // Timer function
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+            let time = 0;
+            setInterval(() => {
+                time++;
+                timerElement.innerHTML = `Time: ${time} seconds`;
+            }, 1000);
+        }
     </script>
+</head>
+<body onload="startTimer()">
+    <h1>Welcome to Turbo Co</h1>
+    <div id="timer">Time: 0 seconds</div>
 </body>
 </html>
