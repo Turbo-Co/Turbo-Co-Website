@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ligue LMU francophone avec système ELO et Safety Rating. Championnat Le Mans Ultimate compétitif.">
+    <meta name="keywords" content="Le Mans Ultimate, Racing, Simulation, LMU, Championnat, ELO">
+    <meta name="author" content="Turbo&Co">
+
+    <!-- Open Graph / Réseaux sociaux -->
+    <meta property="og:title" content="Turbo&Co - Ligue LMU Francophone">
+    <meta property="og:description" content="Championnat Le Mans Ultimate avec classement ELO et Safety Rating.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://turbo-co.github.io/">
+
+    <title>Turbo&Co - Ligue LMU Francophone</title>
+
+    <!-- Police Google optimisée -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --racing-red: #E10600;
+            --racing-dark: #0A0A0F;
+            --racing-card: #15151E;
+            --racing-gray: #B0B0C0; /* Plus clair pour meilleur contraste */
+            --gold: #FFD700;
+            --silver: #E5E7EB;
+            --success: #10B981;
+            --glass: rgba(21, 21, 30, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Titillium Web', sans-serif;
+            background: var(--racing-dark);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(225, 6, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(225, 6, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .bg-grid {
+                animation: gridMove 60s linear infinite;
+            }
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Glow Effects */
+        .glow-red {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(225, 6, 0, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(225, 6, 0, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--racing-red);
+        }
+
+        .logo::before {
+            content: '🏎️';
+            font-size: 1.5rem;
+            aria-label: "Racing car";
+        }
+
+        /* Menu Desktop */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--racing-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--racing-red);
+        }
+
+        /* Menu Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 15, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s;
+                border-bottom: 2px solid var(--racing-red);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+        }
+
+        .btn-discord {
+            background: #5865F2;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+
+        .btn-discord:hover {
+            background: transparent;
+            border-color: #5865F2;
+        }
+
+        @media (max-width: 768px) {
+            .btn-discord {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(225, 6, 0, 0.1);
+            border: 1px solid rgba(225, 6, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--racing-red);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--racing-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--racing-red);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--racing-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--racing-gray);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .stat-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .stat-card:hover {
+            border-color: rgba(225, 6, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--racing-red);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--racing-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Next Race */
+        .next-race {
+            background: linear-gradient(135deg, rgba(225, 6, 0, 0.1) 0%, rgba(10, 10, 15, 0.8) 100%);
+            border: 1px solid rgba(225, 6, 0, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .race-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .race-tag {
+            background: var(--racing-red);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .race-timer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .race-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .race-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        .race-details {
+            display: flex;
+            gap: 2rem;
+            color: var(--racing-gray);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Classement Section */
+        .classement-section {
+            padding: 4rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: var(--racing-red);
+            border-radius: 2px;
+        }
+
+        .sheet-container {
+            background: var(--racing-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .sheet-header {
+            background: linear-gradient(90deg, rgba(225, 6, 0, 0.2) 0%, transparent 100%);
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .sheet-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .sheet-live {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Iframe Google Sheets */
+        .sheet-iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .sheet-iframe {
+                height: 500px;
+            }
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(225, 6, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--racing-gray);
+            font-size: 0.95rem;
+        }
+
+        .elo-explanation {
+            background: rgba(225, 6, 0, 0.05);
+            border-left: 3px solid var(--racing-red);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--racing-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--racing-card);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--racing-red);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--racing-gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--racing-red);
+        }
+
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--racing-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--racing-red);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow-red"></div>
+
+    <header>
+        <div class="container">
+            <nav role="navigation" aria-label="Menu principal">
+                <a href="#" class="logo" aria-label="Turbo and Co Racing">TURBO<span>&CO</span></a>
+
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#classement">Classement</a></li>
+                    <li><a href="#regles">Règles</a></li>
+                </ul>
+
+                <a href="https://discord.gg/turboco" class="btn-discord" target="_blank" rel="noopener noreferrer">
+                    Discord
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="accueil">
+            <div class="container">
+                <div class="hero-badge">
+                    <span class="live-dot"></span>
+                    Serveurs en ligne - Saison 2026
+                </div>
+
+                <h1>CHAMPIONNAT<br>LMU FRANCOPHONE</h1>
+                <p>Le premier système de classement ELO et Safety Rating pour Le Mans Ultimate. Courses classées et communauté compétitive.</p>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Pilotes</span>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-number" style="color: var(--gold);">12</span>
+                        <span class="stat-label">Courses</span>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-number" style="color: var(--success);">ON</span>
+                        <span class="stat-label">Serveur</span>
+                    </article>
+                </div>
+
+                <div class="next-race">
+                    <div class="race-header">
+                        <span class="race-tag">Prochaine Course</span>
+                        <span class="race-timer" id="raceTimer">Chargement...</span>
+                    </div>
+                    <h2 class="race-title">Spa-Francorchamps 6H</h2>
+                    <div class="race-details">
+                        <span>📅 Samedi 21:00</span>
+                        <span>🏎️ LMP2/GTE</span>
+                        <span>👥 24/40 inscrits</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="classement-section" id="classement">
+            <div class="container">
+                <h2 class="section-title">Classement Live</h2>
+                <p style="color: var(--racing-gray); margin-bottom: 2rem;">Mis à jour automatiquement • Système ELO actif</p>
+
+                <div class="sheet-container">
+                    <div class="sheet-header">
+                        <span class="sheet-title">🏆 Top Pilotes Saison 2026</span>
+                        <span class="sheet-live">
+                            <span class="live-dot"></span>
+                            Live
+                        </span>
+                    </div>
+
+                    <!-- 
+                    🔴 INSTRUCTION IMPORTANTE :
+                    Remplace l'URL ci-dessous par ton lien Google Sheets publié.
+
+                    1. Dans Google Sheets : Fichier > Publier sur le web
+                    2. Sélectionne l'onglet "🏠 DASHBOARD" 
+                    3. Copie le lien et remplace TEXAMPLE ci-dessous
+
+                    Lien type : https://docs.google.com/spreadsheets/d/e/2PACX-1v.../pubhtml
+                    -->
+                    <iframe 
+                        class="sheet-iframe"
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTEXAMPLE/pubhtml?gid=0&single=true&widget=true&headers=false&chrome=false&gridlines=false" 
+                        title="Classement Turbo&Co">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="regles">
+            <div class="container">
+                <h2 class="section-title">Comment ça marche ?</h2>
+
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Graphique">📊</div>
+                        <h3>Système ELO</h3>
+                        <p>Algorithme basé sur tes performances et celles de tes adversaires.</p>
+                        <div class="elo-explanation">
+                            ELO += K × (ScoreRéel − ScoreAttendu)<br>
+                            K=40 (débutant) → K=20 (confirmé)
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Bouclier">🛡️</div>
+                        <h3>Safety Rating</h3>
+                        <p>Ton indicateur de propreté. Chaque incident fait baisser ton SR.</p>
+                        <div class="elo-explanation">
+                            S (4.5+) = Pro<br>
+                            A (3.5+) = Confirmé<br>
+                            D (&lt;1.5) = Restrictions
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Drapeau">🏁</div>
+                        <h3>Splits Équilibrés</h3>
+                        <p>Courses divisées par niveau ELO pour des battles fair-play.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">TURBO<span>&CO</span></div>
+            <p style="color: var(--racing-gray); margin-bottom: 2rem;">La compétition LMU francophone de référence</p>
+
+            <nav class="social-links" aria-label="Réseaux sociaux">
+                <a href="https://discord.gg/turboco" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitch</a>
+            </nav>
+
+            <p class="copyright">
+                © 2026 Turbo&Co. Non affilié à Le Mans Ultimate.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Compte à rebours précis
+        function updateTimer() {
+            const raceDate = new Date('2026-03-22T21:00:00');
+            const now = new Date();
+            const diff = raceDate - now;
+
+            const timerElement = document.getElementById('raceTimer');
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                timerElement.textContent = `Dans ${days}j ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                timerElement.textContent = '🏁 Course en cours !';
+                timerElement.style.color = '#10B981';
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Appliquer animation seulement si pas de preference réduite
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.stat-card, .feature-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
