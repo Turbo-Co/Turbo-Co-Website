@@ -222,8 +222,8 @@
                         <span class="stat-label">3 Opens / Semaine</span>
                     </article>
                     <article class="stat-card">
-                        <span class="stat-icon">📈</span>
-                        <span class="stat-label">Progression ELO</span>
+                        <span class="stat-icon">🎙️</span>
+                        <span class="stat-label">Discord Actif</span>
                     </article>
                 </div>
 
@@ -489,8 +489,8 @@
             });
         });
 
-        // ----------------------------------------------------
-        // TIMER TELEMETRIE (RÉGLÉ SUR LE 28 MARS)
+// ----------------------------------------------------
+        // TIMER DISCRET (RÉGLÉ SUR LE 28 MARS)
         // ----------------------------------------------------
         function updateTimer() {
             const raceDate = new Date('2026-03-28T21:00:00');
@@ -505,16 +505,27 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
+                // Design format "pilule" discret et moderne
                 timerElement.innerHTML = `
-                    <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Jours</span></div>
-                    <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Heures</span></div>
-                    <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
-                    <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Sec</span></div>
+                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 600; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: inline-flex; align-items: center; gap: 8px;">
+                        ⏱️ Départ dans 
+                        <span style="color: var(--gold); font-family: monospace; font-size: 1.05rem; letter-spacing: 0.5px;">
+                            ${days}j ${hours}h ${minutes}m ${seconds}s
+                        </span>
+                    </span>
                 `;
             } else if (now >= raceDate && now <= raceEnd) {
-                timerElement.innerHTML = '<div class="race-status status-live">🟢 En cours !</div>';
+                timerElement.innerHTML = `
+                    <span style="color: var(--success); font-size: 0.9rem; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--success); display: inline-flex; align-items: center; gap: 8px;">
+                        🟢 Course en cours !
+                    </span>
+                `;
             } else {
-                timerElement.innerHTML = '<div class="race-status status-ended">🏁 Terminée</div>';
+                timerElement.innerHTML = `
+                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 700; background: rgba(255, 255, 255, 0.05); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); display: inline-flex; align-items: center; gap: 8px;">
+                        🏁 Terminée
+                    </span>
+                `;
             }
         }
 
