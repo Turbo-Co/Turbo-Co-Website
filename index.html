@@ -332,7 +332,7 @@
                         <p>On préfère un pilote lent mais prévisible à un alien qui divebomb à chaque virage. Le respect de l'adversaire est notre règle d'or absolue.</p>
                     </article>
 
-                    <!-- LA NOUVELLE CARTE SPARKLINE ELO ! -->
+                    <!-- CARTE SPARKLINE ELO -->
                     <article class="feature-card">
                         <div class="feature-icon">📈</div>
                         <h3>Progression ELO</h3>
@@ -363,18 +363,20 @@
                 <h2 class="section-title">Hall of Fame</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 2rem;">Parce qu'on aime quand même la bagarre (propre). Classement basé sur l'assiduité et les événements.</p>
                 
-                <!-- Nouveaux boutons de navigation de l'Iframe -->
+                <!-- BOUTONS DE NAVIGATION DE L'IFRAME -->
                 <div class="sheet-tabs">
+                    <!-- GID 688402669 correspond à l'onglet "DASHBOARD" -->
                     <button class="sheet-tab-btn active" onclick="changeSheet('688402669', this)">🏠 Dashboard</button>
+                    <!-- GID 431027575 correspond à l'onglet "CLASSEMENT" -->
                     <button class="sheet-tab-btn" onclick="changeSheet('431027575', this)">🏆 Classement Complet</button>
                 </div>
 
                 <div class="sheet-container">
-                    <!-- Iframe épurée sans widgets -->
+                    <!-- IFRAME CONNECTÉE AU NOUVEAU LIEN PUBLIC -->
                     <iframe 
                         id="ranking-iframe"
                         class="sheet-iframe"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pubhtml?gid=688402669&single=true&widget=false&headers=false&chrome=false&gridlines=false"
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pubhtml?gid=688402669&single=true&widget=false&headers=false&chrome=false&gridlines=false"
                         title="Classement Turbo&Co" scrolling="no">
                     </iframe>
                 </div> 
@@ -397,11 +399,11 @@
 
     <script>
         // ----------------------------------------------------
-        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS (VIA LE LIEN CSV)
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            // Lien CSV Google Sheets
-            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pub?gid=1535766100&single=true&output=csv';
+            // Lien CSV public fourni
+            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pub?gid=1162198900&single=true&output=csv';
 
             try {
                 const response = await fetch(urlCSV);
@@ -413,7 +415,7 @@
                     const col = ligne.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
 
                     if (col.length >= 9) {
-                        const id = col[0]; // id_course
+                        const id = col[0]; // id_course (ex: weekend_special, monday_open, etc.)
 
                         if (document.getElementById('title-' + id)) {
                             // Injection des textes
@@ -461,8 +463,8 @@
         function changeSheet(gid, btnElement) {
             const iframe = document.getElementById('ranking-iframe');
             
-            // Changement d'URL en gardant les paramètres clean sans widget=true
-            iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pubhtml?gid=${gid}&single=true&widget=false&headers=false&chrome=false&gridlines=false`;
+            // Changement d'URL avec le nouveau lien de base et le GID sélectionné
+            iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pubhtml?gid=${gid}&single=true&widget=false&headers=false&chrome=false&gridlines=false`;
             
             // Mise à jour de la couleur des boutons
             document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -488,10 +490,9 @@
         });
 
         // ----------------------------------------------------
-        // TIMER TELEMETRIE
+        // TIMER TELEMETRIE (RÉGLÉ SUR LE 28 MARS)
         // ----------------------------------------------------
         function updateTimer() {
-            // Remplace 2026-03-28 par la date voulue
             const raceDate = new Date('2026-03-28T21:00:00');
             const raceEnd = new Date('2026-03-29T03:00:00');
             const now = new Date();
