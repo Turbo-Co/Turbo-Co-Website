@@ -3,19 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ligue LMU francophone avec système iRating, Safety Rating et Courses Hebdomadaires.">
-    <meta name="keywords" content="Le Mans Ultimate, Racing, Simulation, LMU, Championnat, iRating, Simracing">
+    <meta name="description" content="Turbo&Co - La communauté Le Mans Ultimate qui privilégie le fair-play, l'entraide et les courses propres.">
+    <meta name="keywords" content="Le Mans Ultimate, Racing, Simulation, LMU, Communauté, Fair-play, Open, Simracing">
     <meta name="author" content="Turbo&Co">
 
-    <!-- Open Graph / Réseaux sociaux -->
-    <meta property="og:title" content="Turbo&Co - Ligue LMU Francophone">
-    <meta property="og:description" content="Championnat Le Mans Ultimate avec événements hebdomadaires, iRating et Licences.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://turbo-co.github.io/">
+    <title>Turbo&Co - Communauté LMU Francophone</title>
 
-    <title>Turbo&Co - Ligue LMU Francophone</title>
-
-    <!-- Police Google optimisée -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -27,414 +20,166 @@
             --racing-card: #15151E;
             --racing-gray: #B0B0C0;
             --gold: #FFD700;
-            --silver: #E5E7EB;
             --success: #10B981;
             --glass: rgba(21, 21, 30, 0.8);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Titillium Web', sans-serif;
-            background: var(--racing-dark);
-            color: white;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        body { font-family: 'Titillium Web', sans-serif; background: var(--racing-dark); color: white; overflow-x: hidden; line-height: 1.6; }
 
-        /* Background Grid */
         .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(225, 6, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(225, 6, 0, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(225, 6, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 6, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -2;
         }
 
-        @media (prefers-reduced-motion: no-preference) {
-            .bg-grid {
-                animation: gridMove 60s linear infinite;
-            }
-        }
+        @media (prefers-reduced-motion: no-preference) { .bg-grid { animation: gridMove 60s linear infinite; } }
+        @keyframes gridMove { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Glow Effects */
         .glow-red {
-            position: fixed;
-            width: 600px;
-            height: 600px;
+            position: fixed; width: 600px; height: 600px;
             background: radial-gradient(circle, rgba(225, 6, 0, 0.15) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            z-index: -1;
-            pointer-events: none;
+            top: -200px; right: -200px; z-index: -1; pointer-events: none;
         }
 
         /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(225, 6, 0, 0.3);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
+        header { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(225, 6, 0, 0.3); z-index: 1000; padding: 1rem 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; }
+        .logo span { color: var(--racing-red); }
+        .logo::before { content: '🏎️'; font-size: 1.5rem; }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--racing-red); }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: white;
-        }
+        .btn-discord { background: #5865F2; color: white; padding: 0.6rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent; }
+        .btn-discord:hover { background: transparent; border-color: #5865F2; }
 
-        .logo span {
-            color: var(--racing-red);
-        }
-
-        .logo::before {
-            content: '🏎️';
-            font-size: 1.5rem;
-        }
-
-        /* Menu Desktop */
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--racing-gray);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--racing-red);
-        }
+        .btn-action { display: inline-block; background: var(--racing-red); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.3s ease; text-align: center; border: none; cursor: pointer; }
+        .btn-action:hover { background: #b30500; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(225, 6, 0, 0.4); }
+        .btn-card { width: 100%; margin-top: 1.5rem; background: rgba(225, 6, 0, 0.1); color: var(--racing-red); border: 1px solid rgba(225, 6, 0, 0.3); }
+        .btn-card:hover { background: var(--racing-red); color: white; }
 
         /* Menu Mobile */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 5px;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            transition: 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; z-index: 1001; }
+        .hamburger span { width: 25px; height: 3px; background: white; transition: 0.3s ease-in-out; border-radius: 2px; }
         .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links {
-                position: fixed; top: 70px; left: 0; width: 100%;
-                background: rgba(10, 10, 15, 0.98);
-                flex-direction: column; padding: 2rem; gap: 1.5rem;
-                transform: translateY(-150%); transition: transform 0.3s ease-in-out;
-                border-bottom: 2px solid var(--racing-red);
-            }
+            .nav-links { position: fixed; top: 70px; left: 0; width: 100%; background: rgba(10, 10, 15, 0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; transform: translateY(-150%); transition: transform 0.3s ease-in-out; border-bottom: 2px solid var(--racing-red); }
             .nav-links.active { transform: translateY(0); }
-            .nav-links a { font-size: 1.2rem; }
+            .btn-discord { display: none; }
         }
-
-        .btn-discord {
-            background: #5865F2; color: white; padding: 0.6rem 1.5rem;
-            border-radius: 6px; text-decoration: none; font-weight: 700;
-            font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent;
-        }
-
-        .btn-discord:hover { background: transparent; border-color: #5865F2; }
-        @media (max-width: 768px) { .btn-discord { display: none; } }
 
         /* Hero Section */
         .hero { margin-top: 100px; padding: 4rem 0; text-align: center; }
-
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(225, 6, 0, 0.1); border: 1px solid rgba(225, 6, 0, 0.3);
-            padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem;
-            color: var(--racing-red); font-weight: 600; margin-bottom: 2rem;
-        }
-
-        .live-dot {
-            width: 8px; height: 8px; background: var(--racing-red);
-            border-radius: 50%; box-shadow: 0 0 10px var(--racing-red);
-            animation: blink 1s infinite;
-        }
-
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(225, 6, 0, 0.1); border: 1px solid rgba(225, 6, 0, 0.3); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; color: var(--racing-red); font-weight: 600; margin-bottom: 2rem; }
+        .live-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        .hero h1 {
-            font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, var(--racing-red) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1;
-        }
-
+        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, var(--racing-red) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
         @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } }
+        .hero p { font-size: 1.2rem; color: var(--racing-gray); max-width: 650px; margin: 0 auto 3rem; }
 
-        .hero p { font-size: 1.2rem; color: var(--racing-gray); max-width: 600px; margin: 0 auto 3rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .stat-card { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { border-color: rgba(225, 6, 0, 0.3); transform: translateY(-5px); }
+        .stat-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.95rem; color: var(--racing-gray); font-weight: 600; }
 
-        .next-race {
-            background: linear-gradient(135deg, rgba(225, 6, 0, 0.1) 0%, rgba(10, 10, 15, 0.8) 100%);
-            border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 16px;
-            padding: 2rem; margin: 3rem 0; position: relative; overflow: hidden;
-            text-align: left;
-        }
+        /* Main Event (Weekend Special) */
+        .next-race { background: linear-gradient(to right, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 100%), #15151E; border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 16px; padding: 2rem; margin: 3rem 0; position: relative; overflow: hidden; text-align: left; background-size: cover; background-position: center; }
+        .race-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+        .race-tag { background: var(--racing-red); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+        .race-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .race-details { display: flex; gap: 2rem; color: #E5E7EB; font-size: 0.95rem; flex-wrap: wrap; font-weight: 600; }
 
-        .race-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
-        }
-
-        .race-tag {
-            background: var(--racing-red); color: white; padding: 0.4rem 1rem;
-            border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
-        }
-
+        /* Timer Télémétrie */
         .race-timer { display: flex; gap: 0.5rem; align-items: center; }
-
-        .time-box {
-            background: rgba(10, 10, 15, 0.8); border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 8px; padding: 0.5rem 0.8rem; display: flex; flex-direction: column;
-            align-items: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
+        .time-box { background: rgba(10, 10, 15, 0.8); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 0.5rem 0.8rem; display: flex; flex-direction: column; align-items: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
         .time-val { font-size: 1.5rem; font-weight: 900; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
         .time-label { font-size: 0.65rem; color: var(--racing-gray); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.2rem; }
-        
-        .race-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .race-details { display: flex; gap: 2rem; color: var(--racing-gray); font-size: 0.95rem; flex-wrap: wrap; }
+        .race-status { padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
+        .status-live { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
+        .status-ended { background: rgba(255, 255, 255, 0.05); color: var(--racing-gray); border: 1px solid var(--racing-gray); }
 
-        /* --- NOUVEAU : COURSES DE LA SEMAINE (Style LFM / SGP) --- */
+        /* Événements de la semaine */
         .events-section { padding: 2rem 0 4rem; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+        .section-title::before { content: ''; width: 4px; height: 30px; background: var(--racing-red); border-radius: 2px; }
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         
-        .section-title {
-            font-size: 2rem; font-weight: 700; margin-bottom: 2rem;
-            display: flex; align-items: center; gap: 1rem;
-        }
-
-        .section-title::before {
-            content: ''; width: 4px; height: 30px; background: var(--racing-red); border-radius: 2px;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .event-card {
-            background: var(--racing-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            position: relative;
-        }
-
-        .event-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(225, 6, 0, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .event-img-container {
-            height: 150px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            border-bottom: 3px solid var(--racing-red);
-        }
-
-        /* Dégradé pour assombrir l'image et faire ressortir le texte blanc si besoin */
-        .event-img-container::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(to top, rgba(10,10,15,0.8), transparent);
-        }
-
-        .event-game-logo {
-            position: absolute;
-            bottom: -15px;
-            left: 20px;
-            background: var(--racing-red);
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 4px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            font-style: italic;
-            z-index: 2;
-            letter-spacing: -1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .event-body {
-            padding: 2.5rem 1.5rem 1.5rem; /* Espace en haut pour le logo qui dépasse */
-        }
-
-        .event-title-card {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.2rem;
-        }
-
-        .event-info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .event-info-row {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: var(--racing-gray);
-            font-size: 0.95rem;
-        }
-
-        .event-icon {
-            width: 20px;
-            text-align: center;
-            opacity: 0.9;
-        }
-
-        /* Classement Section */
-        .classement-section { padding: 4rem 0; background: rgba(0, 0, 0, 0.3); }
-
-        .sheet-container {
-            background: var(--racing-card); border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); -webkit-overflow-scrolling: touch;
-        }
-
-        .sheet-header {
-            background: linear-gradient(90deg, rgba(225, 6, 0, 0.2) 0%, transparent 100%);
-            padding: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-        }
-
-        .sheet-title { font-size: 1.2rem; font-weight: 700; }
-        .sheet-live { display: flex; align-items: center; gap: 0.5rem; color: var(--success); font-size: 0.85rem; font-weight: 600; }
+        .event-card { background: var(--racing-card); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative; }
+        .event-card:hover { transform: translateY(-5px); border-color: rgba(225, 6, 0, 0.5); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
+        .event-img-container { height: 130px; background-size: cover; background-position: center; position: relative; border-bottom: 3px solid var(--racing-red); }
+        .event-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(10,10,15,0.8), transparent); }
+        .event-day-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); padding: 0.3rem 0.8rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
         
-        .sheet-iframe { width: 100%; height: 700px; border: none; display: block; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+        .event-body { padding: 1.5rem; }
+        .event-title-card { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 1.2rem; }
+        .event-info-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .event-info-row { display: flex; align-items: center; gap: 0.8rem; color: var(--racing-gray); font-size: 0.95rem; }
+        .event-icon { width: 20px; text-align: center; opacity: 0.9; }
 
-        /* Features / Règles (IR & SR) */
-        .features { padding: 4rem 0; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-
-        .feature-card {
-            background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px; padding: 2rem; transition: all 0.3s;
-        }
+        /* Charte / Règles */
+        .features { padding: 4rem 0; background: rgba(0, 0, 0, 0.3); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
         .feature-card:hover { border-color: rgba(225, 6, 0, 0.3); }
         .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
         .feature-card p { color: var(--racing-gray); font-size: 0.95rem; }
 
-        /* Graphique iRating (Visuel CSS) */
-        .ir-visual {
-            display: flex;
-            align-items: flex-end;
-            height: 80px;
-            gap: 6px;
-            margin-top: 1.5rem;
-            padding-bottom: 5px;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-            position: relative;
+        /* Graphique Sparkline ELO (Nouveau) */
+        .elo-sparkline {
+            display: flex; align-items: flex-end; height: 50px; gap: 4px;
+            margin-top: 1.5rem; padding-bottom: 5px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative;
+        }
+        .spark-bar {
+            flex: 1; background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px 2px 0 0; transition: height 1s ease;
+        }
+        .spark-bar:nth-child(1) { height: 20%; }
+        .spark-bar:nth-child(2) { height: 30%; }
+        .spark-bar:nth-child(3) { height: 25%; }
+        .spark-bar:nth-child(4) { height: 50%; }
+        .spark-bar:nth-child(5) { height: 75%; }
+        .spark-bar:nth-child(6) { height: 90%; background: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+        .elo-trend {
+            position: absolute; top: -25px; right: 0; color: var(--success); font-weight: bold; font-size: 0.9rem;
         }
 
-        .ir-bar { width: 100%; background: #2A2A35; border-radius: 3px 3px 0 0; transition: height 1s ease; }
-        .ir-bar.active { background: var(--racing-red); box-shadow: 0 0 10px rgba(225, 6, 0, 0.3); }
-        .ir-value { position: absolute; top: -20px; right: 0; font-size: 0.9rem; font-weight: bold; color: var(--gold); }
-
-        /* Badges de Licence & Safety Rating */
-        .license-track {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-top: 1.5rem; background: rgba(0, 0, 0, 0.4); padding: 1rem;
-            border-radius: 8px; position: relative;
+        /* Classement & Iframe avec Nouveaux Boutons */
+        .classement-section { padding: 4rem 0; }
+        
+        .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .sheet-tab-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 8px;
+            font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;
         }
+        .sheet-tab-btn:hover { background: rgba(225, 6, 0, 0.1); color: white; }
+        .sheet-tab-btn.active { background: var(--racing-red); color: white; border-color: var(--racing-red); box-shadow: 0 4px 15px rgba(225, 6, 0, 0.3); }
 
-        .license-track::before {
-            content: ''; position: absolute; top: 50%; left: 10%; right: 10%;
-            height: 2px; background: rgba(255, 255, 255, 0.1); z-index: 1;
-        }
-
-        .lic-badge {
-            position: relative; z-index: 2; padding: 0.4rem 0.6rem; border-radius: 6px;
-            font-weight: 800; font-size: 0.8rem; text-transform: uppercase; text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: transform 0.3s;
-        }
-
-        .lic-am { background: #10B981; color: white; border: 2px solid #059669; }
-        .lic-proam { background: #3B82F6; color: white; border: 2px solid #2563EB; }
-        .lic-pro { background: var(--racing-red); color: white; border: 2px solid #990400; }
+        .sheet-container { background: var(--racing-card); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); -webkit-overflow-scrolling: touch; }
+        .sheet-iframe { width: 100%; height: 700px; border: none; display: block; border-radius: 12px; }
 
         /* Footer */
-        footer {
-            background: var(--racing-card); border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem 0; text-align: center; margin-top: 4rem;
-        }
+        footer { background: var(--racing-card); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem 0; text-align: center; margin-top: 2rem; }
         .footer-logo { font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem; }
         .footer-logo span { color: var(--racing-red); }
         .social-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
         .social-links a { color: var(--racing-gray); text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
         .social-links a:hover { color: var(--racing-red); }
         .copyright { color: #666; font-size: 0.9rem; margin-top: 1rem; }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--racing-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--racing-red); border-radius: 5px; }
     </style>
 </head>
 <body>
@@ -443,196 +188,290 @@
 
     <header>
         <div class="container">
-            <nav role="navigation" aria-label="Menu principal">
-                <a href="#" class="logo" aria-label="Turbo and Co Racing">TURBO<span>&CO</span></a>
-
-                <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Ouvrir le menu">
+            <nav role="navigation">
+                <a href="#" class="logo">TURBO<span>&CO</span></a>
+                <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
                     <span></span><span></span><span></span>
                 </button>
-
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#evenements">Événements</a></li>
-                    <li><a href="#classement">Classement</a></li>
-                    <li><a href="#regles">Règles</a></li>
+                    <li><a href="#programme">Le Programme</a></li>
+                    <li><a href="#charte">Notre Esprit</a></li>
+                    <li><a href="#classement">Hall of Fame</a></li>
                 </ul>
-
-                <a href="https://discord.gg/ZJU3r4JP48" class="btn-discord" target="_blank">Discord</a>
+                <a href="https://discord.gg/ZJU3r4JP48" class="btn-discord" target="_blank">Rejoindre le Discord</a>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- HERO -->
         <section class="hero" id="accueil">
             <div class="container">
-                <div class="hero-badge">
-                    <span class="live-dot"></span> Serveurs en ligne - Saison 2026
+                <div class="hero-badge"><span class="live-dot"></span> Serveur Discord Ouvert</div>
+                <h1>LA COMMUNAUTÉ LMU<br>FRANCOPHONE</h1>
+                <p>Oubliez la pression et les algorithmes. Turbo&Co est un groupe de passionnés où le fair-play, l'entraide et la bonne humeur passent avant la ligne d'arrivée.</p>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <span class="stat-icon">🤝</span>
+                        <span class="stat-label">100% Fair-Play</span>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-icon">📅</span>
+                        <span class="stat-label">3 Opens / Semaine</span>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-icon">📈</span>
+                        <span class="stat-label">Progression ELO</span>
+                    </article>
                 </div>
 
-                <h1>CHAMPIONNAT<br>LMU FRANCOPHONE</h1>
-                <p>Le système compétitif ultime pour Le Mans Ultimate. Courses hebdomadaires, Matchmaking par iRating, et jauge de fair-play (Safety Rating).</p>
-
-                <div class="next-race">
+                <!-- MAIN EVENT (WEEKEND SPECIAL) -->
+                <div class="next-race" id="img-weekend_special">
                     <div class="race-header">
-                        <span class="race-tag">Prochain Grand Événement</span>
+                        <span class="race-tag">🏆 L'Événement du Week-end</span>
                         <div class="race-timer" id="raceTimer">Chargement...</div>
                     </div>
-                    <h2 class="race-title">Spa-Francorchamps 6H (Special Event)</h2>
+                    <h2 class="race-title" id="title-weekend_special">Chargement de l'événement...</h2>
+                    
                     <div class="race-details">
-                        <span>📅 Sam 21 Mar 2026 - 21:00</span>
-                        <span>🏎️ Multiclasse (HYP / LMP2 / GTE)</span>
-                        <span>👥 24/40 inscrits</span>
+                        <span>📅 <span id="time-weekend_special">...</span></span>
+                        <span>🏎️ <span id="cat-weekend_special">...</span></span>
+                        <span>🛣️ <span id="track-weekend_special">...</span></span>
+                        <span id="status-weekend_special" style="font-weight: bold;">⏳ Vérification des places...</span>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <a id="link-weekend_special" href="#" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NOUVELLE SECTION : Courses de la Semaine -->
-        <section class="events-section" id="evenements">
+        <!-- PROGRAMME DE LA SEMAINE -->
+        <section class="events-section" id="programme">
             <div class="container">
-                <h2 class="section-title">Courses de la Semaine</h2>
-                <p style="color: var(--racing-gray); margin-bottom: 3rem;">Des événements réguliers tout au long de la semaine pour faire grimper votre iRating et SR.</p>
-
+                <h2 class="section-title">Nos Opens Réguliers</h2>
+                <p style="color: var(--racing-gray); margin-bottom: 3rem;">Des courses sans prise de tête les soirs de semaine pour rouler ensemble, tester des setups et s'améliorer.</p>
+                
                 <div class="events-grid">
-                    
-                    <!-- Carte 1 -->
-                    <article class="event-card">
-                        <!-- Remplace l'URL par une image de LMU ou du circuit -->
-                        <div class="event-img-container" style="background-image: url('https://images.unsplash.com/photo-1541443131876-44b0322260fd?q=80&w=800&auto=format&fit=crop');">
-                            <span class="event-game-logo">LMU</span>
+                    <!-- LUNDI -->
+                    <article class="event-card" id="card-monday_open">
+                        <div id="img-monday_open" class="event-img-container">
+                            <span id="day-monday_open" class="event-day-badge">LUNDI</span>
                         </div>
                         <div class="event-body">
-                            <h3 class="event-title-card">Flat Out Friday</h3>
+                            <h3 id="title-monday_open" class="event-title-card">Chargement...</h3>
                             <div class="event-info-list">
-                                <div class="event-info-row"><span class="event-icon">📅</span> Ven. 20 Mar 2026</div>
-                                <div class="event-info-row"><span class="event-icon">🏎️</span> HYP (Hypercar)</div>
-                                <div class="event-info-row"><span class="event-icon">🛣️</span> Spa-Francorchamps</div>
-                                <div class="event-info-row"><span class="event-icon">⏱️</span> 20:00 CET</div>
-                                <div class="event-info-row"><span class="event-icon">👥</span> 15 inscrits</div>
+                                <div class="event-info-row"><span class="event-icon">⏱️</span> <span id="time-monday_open">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🏎️</span> <span id="cat-monday_open">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🛣️</span> <span id="track-monday_open">...</span></div>
+                                <div class="event-info-row">
+                                    <span class="event-icon">👥</span> 
+                                    <span id="status-monday_open" style="font-weight: 700;">⏳ Chargement...</span>
+                                </div>
                             </div>
+                            <a id="link-monday_open" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- Carte 2 -->
-                    <article class="event-card">
-                        <div class="event-img-container" style="background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop');">
-                            <span class="event-game-logo">LMU</span>
+                    <!-- MERCREDI -->
+                    <article class="event-card" id="card-wednesday_sprint">
+                        <div id="img-wednesday_sprint" class="event-img-container">
+                            <span id="day-wednesday_sprint" class="event-day-badge">MERCREDI</span>
                         </div>
                         <div class="event-body">
-                            <h3 class="event-title-card">LMP2 Sprint Series</h3>
+                            <h3 id="title-wednesday_sprint" class="event-title-card">Chargement...</h3>
                             <div class="event-info-list">
-                                <div class="event-info-row"><span class="event-icon">📅</span> Jeu. 19 Mar 2026</div>
-                                <div class="event-info-row"><span class="event-icon">🏎️</span> LMP2</div>
-                                <div class="event-info-row"><span class="event-icon">🛣️</span> Monza</div>
-                                <div class="event-info-row"><span class="event-icon">⏱️</span> 21:00 CET</div>
-                                <div class="event-info-row"><span class="event-icon">👥</span> 22 inscrits</div>
+                                <div class="event-info-row"><span class="event-icon">⏱️</span> <span id="time-wednesday_sprint">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🏎️</span> <span id="cat-wednesday_sprint">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🛣️</span> <span id="track-wednesday_sprint">...</span></div>
+                                <div class="event-info-row">
+                                    <span class="event-icon">👥</span> 
+                                    <span id="status-wednesday_sprint" style="font-weight: 700;">⏳ Chargement...</span>
+                                </div>
                             </div>
+                            <a id="link-wednesday_sprint" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- Carte 3 -->
-                    <article class="event-card">
-                        <div class="event-img-container" style="background-image: url('https://images.unsplash.com/photo-1510614138676-47e13cbdfbf7?q=80&w=800&auto=format&fit=crop');">
-                            <span class="event-game-logo">LMU</span>
+                    <!-- VENDREDI -->
+                    <article class="event-card" id="card-friday_fun">
+                        <div id="img-friday_fun" class="event-img-container">
+                            <span id="day-friday_fun" class="event-day-badge">VENDREDI</span>
                         </div>
                         <div class="event-body">
-                            <h3 class="event-title-card">Rookie GTE Cup</h3>
+                            <h3 id="title-friday_fun" class="event-title-card">Chargement...</h3>
                             <div class="event-info-list">
-                                <div class="event-info-row"><span class="event-icon">📅</span> Mar. 24 Mar 2026</div>
-                                <div class="event-info-row"><span class="event-icon">🏎️</span> GTE (Licence AM)</div>
-                                <div class="event-info-row"><span class="event-icon">🛣️</span> Sebring</div>
-                                <div class="event-info-row"><span class="event-icon">⏱️</span> 19:30 CET</div>
-                                <div class="event-info-row"><span class="event-icon">👥</span> 31 inscrits</div>
+                                <div class="event-info-row"><span class="event-icon">⏱️</span> <span id="time-friday_fun">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🏎️</span> <span id="cat-friday_fun">...</span></div>
+                                <div class="event-info-row"><span class="event-icon">🛣️</span> <span id="track-friday_fun">...</span></div>
+                                <div class="event-info-row">
+                                    <span class="event-icon">👥</span> 
+                                    <span id="status-friday_fun" style="font-weight: 700;">⏳ Chargement...</span>
+                                </div>
                             </div>
+                            <a id="link-friday_fun" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
-
                 </div>
             </div>
         </section>
 
+        <!-- L'ESPRIT -->
+        <section class="features" id="charte">
+            <div class="container">
+                <h2 class="section-title">L'Esprit Turbo&Co</h2>
+                <p style="color: var(--racing-gray); margin-bottom: 3rem;">Ce qui fait l'ADN de notre communauté. Si vous vous reconnaissez là-dedans, vous êtes au bon endroit.</p>
+
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Respect & Clean Racing</h3>
+                        <p>On préfère un pilote lent mais prévisible à un alien qui divebomb à chaque virage. Le respect de l'adversaire est notre règle d'or absolue.</p>
+                    </article>
+
+                    <!-- LA NOUVELLE CARTE SPARKLINE ELO ! -->
+                    <article class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Progression ELO</h3>
+                        <p>Un système de classement dynamique intégré. Vos performances sont suivies course après course pour vous situer face aux autres pilotes.</p>
+                        <div class="elo-sparkline">
+                            <span class="elo-trend">+184 pts ↗</span>
+                            <div class="spark-bar"></div>
+                            <div class="spark-bar"></div>
+                            <div class="spark-bar"></div>
+                            <div class="spark-bar"></div>
+                            <div class="spark-bar"></div>
+                            <div class="spark-bar"></div>
+                        </div>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Ouvert aux Débutants</h3>
+                        <p>Vous débutez sur Le Mans Ultimate ? Pas de souci. Les pilotes plus expérimentés partagent leurs setups et leurs conseils en vocal.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLASSEMENT & BOUTONS EXTERNES -->
         <section class="classement-section" id="classement">
             <div class="container">
-                <h2 class="section-title">Classement Global</h2>
+                <h2 class="section-title">Hall of Fame</h2>
+                <p style="color: var(--racing-gray); margin-bottom: 2rem;">Parce qu'on aime quand même la bagarre (propre). Classement basé sur l'assiduité et les événements.</p>
+                
+                <!-- Nouveaux boutons de navigation de l'Iframe -->
+                <div class="sheet-tabs">
+                    <button class="sheet-tab-btn active" onclick="changeSheet('688402669', this)">🏠 Dashboard</button>
+                    <button class="sheet-tab-btn" onclick="changeSheet('431027575', this)">🏆 Classement Complet</button>
+                </div>
+
                 <div class="sheet-container">
-                    <div class="sheet-header">
-                        <span class="sheet-title">🏆 Top Pilotes (Basé sur l'iRating)</span>
-                        <span class="sheet-live"><span class="live-dot"></span> Live</span>
-                    </div>
+                    <!-- Iframe épurée sans widgets -->
                     <iframe 
+                        id="ranking-iframe"
                         class="sheet-iframe"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pubhtml?gid=354195948&single=true&widget=true&headers=false&chrome=false&gridlines=false"
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pubhtml?gid=688402669&single=true&widget=false&headers=false&chrome=false&gridlines=false"
                         title="Classement Turbo&Co" scrolling="no">
                     </iframe>
                 </div> 
             </div> 
         </section> 
-
-        <section class="features" id="regles">
-            <div class="container">
-                <h2 class="section-title">Le Système de Rating</h2>
-                <p style="color: var(--racing-gray); margin-bottom: 3rem;">Inspiré des plus grandes simulations, un système taillé pour le matchmaking compétitif.</p>
-
-                <div class="features-grid">
-                    
-                    <!-- Carte 1 : iRating -->
-                    <article class="feature-card">
-                        <div class="feature-icon" role="img" aria-label="Graphique">📈</div>
-                        <h3>Matchmaking (iRating)</h3>
-                        <p>Votre niveau de performance. Gagnez de l'IR en finissant devant des adversaires mieux classés, perdez-en si vous terminez au fond du peloton.</p>
-                        
-                        <!-- Graphique CSS -->
-                        <div class="ir-visual">
-                            <span class="ir-value">1850 IR</span>
-                            <div class="ir-bar" style="height: 30%"></div>
-                            <div class="ir-bar" style="height: 45%"></div>
-                            <div class="ir-bar" style="height: 40%"></div>
-                            <div class="ir-bar" style="height: 60%"></div>
-                            <div class="ir-bar" style="height: 75%"></div>
-                            <div class="ir-bar active" style="height: 90%"></div>
-                        </div>
-                    </article>
-
-                    <!-- Carte 2 : Safety Rating -->
-                    <article class="feature-card">
-                        <div class="feature-icon" role="img" aria-label="Bouclier">🛡️</div>
-                        <h3>Safety Rating & Licences</h3>
-                        <p>Votre jauge de fair-play. Pilotez proprement pour faire grimper votre SR et débloquer les licences supérieures vous donnant accès aux prototypes.</p>
-                        
-                        <div class="license-track">
-                            <div class="lic-badge lic-am" title="Débutant - SR 2.0+">AM<br><span style="font-size:0.6rem">SR 2.0</span></div>
-                            <div class="lic-badge lic-proam" title="Intermédiaire - SR 3.0+">PRO-AM<br><span style="font-size:0.6rem">SR 3.0</span></div>
-                            <div class="lic-badge lic-pro" title="Élite - SR 4.0+">PRO<br><span style="font-size:0.6rem">SR 4.0</span></div>
-                        </div>
-                    </article>
-
-                    <!-- Carte 3 : Splits -->
-                    <article class="feature-card">
-                        <div class="feature-icon" role="img" aria-label="Serveur">🏁</div>
-                        <h3>Splits par iRating</h3>
-                        <p>Fini les courses déséquilibrées. Lorsqu'un événement compte trop d'inscrits, les serveurs (Splits) sont automatiquement divisés selon le niveau (iRating) de chacun.</p>
-                    </article>
-
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
         <div class="container">
             <div class="footer-logo">TURBO<span>&CO</span></div>
-            <p style="color: var(--racing-gray); margin-bottom: 2rem;">La ligue LMU francophone propulsée par l'iRating</p>
+            <p style="color: var(--racing-gray); margin-bottom: 2rem;">Communauté Simracing Le Mans Francophone</p>
             <nav class="social-links" aria-label="Réseaux sociaux">
                 <a href="https://discord.gg/ZJU3r4JP48" target="_blank">Discord</a>
                 <a href="#" target="_blank">Twitch</a>
                 <a href="https://www.youtube.com/@Turbo-And-Co" target="_blank">Youtube</a>
             </nav>
-            <p class="copyright">© 2026 Turbo&Co. Non affilié à Le Mans Ultimate. Crée par Maz</p>
+            <p class="copyright">© 2026 Turbo&Co. Non affilié à Le Mans Ultimate.</p>
         </div>
     </footer>
 
     <script>
-        // Menu Mobile 
+        // ----------------------------------------------------
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
+        // ----------------------------------------------------
+        async function fetchInscriptions() {
+            // Lien CSV Google Sheets
+            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pub?gid=1535766100&single=true&output=csv';
+
+            try {
+                const response = await fetch(urlCSV);
+                const csvData = await response.text();
+                const lignes = csvData.split('\n').slice(1); // Ignorer l'en-tête
+
+                lignes.forEach(ligne => {
+                    // Regex pour supporter les virgules dans le texte du Google Sheet
+                    const col = ligne.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
+
+                    if (col.length >= 9) {
+                        const id = col[0]; // id_course
+
+                        if (document.getElementById('title-' + id)) {
+                            // Injection des textes
+                            if(document.getElementById('day-' + id)) document.getElementById('day-' + id).innerText = col[1];    
+                            document.getElementById('title-' + id).innerText = col[2];  
+                            document.getElementById('time-' + id).innerText = col[3];   
+                            document.getElementById('cat-' + id).innerText = col[4];    
+                            document.getElementById('track-' + id).innerText = col[5];  
+                            
+                            // Image avec prise en charge de GitHub ?raw=true
+                            let imgUrl = col[6];
+                            if(imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) imgUrl += "?raw=true";
+                            
+                            const imgContainer = document.getElementById('img-' + id);
+                            if(id === 'weekend_special') {
+                                imgContainer.style.backgroundImage = `linear-gradient(to right, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 100%), url('${imgUrl}')`;
+                            } else {
+                                imgContainer.style.backgroundImage = `url('${imgUrl}')`;
+                            }
+
+                            // Statut & Couleurs
+                            const statusEl = document.getElementById('status-' + id);
+                            const statusTxt = col[7];
+                            statusEl.innerText = statusTxt;
+                            
+                            if(statusTxt.includes('🔴')) statusEl.style.color = '#F87171';
+                            else if(statusTxt.includes('🟠')) statusEl.style.color = '#FBBF24';
+                            else if(statusTxt.includes('🟢')) statusEl.style.color = '#10B981';
+
+                            // Lien Discord
+                            document.getElementById('link-' + id).href = col[8];
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Erreur lors de la mise à jour depuis Sheets :", error);
+            }
+        }
+
+        fetchInscriptions();
+
+        // ----------------------------------------------------
+        // NAVIGATION DE L'IFRAME GOOGLE SHEETS
+        // ----------------------------------------------------
+        function changeSheet(gid, btnElement) {
+            const iframe = document.getElementById('ranking-iframe');
+            
+            // Changement d'URL en gardant les paramètres clean sans widget=true
+            iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vT50NrYRLAAtxGquwpEWm1xOe0HSnFS6Js37JwVpfuB2hOfYbGXcYpV1giPAT-I929e6-U22X11Exen/pubhtml?gid=${gid}&single=true&widget=false&headers=false&chrome=false&gridlines=false`;
+            
+            // Mise à jour de la couleur des boutons
+            document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        // ----------------------------------------------------
+        // GESTION DU MENU MOBILE ET ANIMATIONS AU SCROLL
+        // ----------------------------------------------------
         const nav = document.getElementById('navLinks');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
 
@@ -648,30 +487,28 @@
             });
         });
 
-        // Compte à rebours
+        // ----------------------------------------------------
+        // TIMER TELEMETRIE
+        // ----------------------------------------------------
         function updateTimer() {
-            const raceDate = new Date('2026-03-21T21:00:00');
-            const raceEnd = new Date('2026-03-22T03:00:00'); 
+            // Remplace 2026-03-28 par la date voulue
+            const raceDate = new Date('2026-03-28T21:00:00');
+            const raceEnd = new Date('2026-03-29T03:00:00');
             const now = new Date();
             const timerElement = document.getElementById('raceTimer');
 
             if (now < raceDate) {
                 const diff = raceDate - now;
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                const d = days.toString().padStart(2, '0');
-                const h = hours.toString().padStart(2, '0');
-                const m = minutes.toString().padStart(2, '0');
-                const s = seconds.toString().padStart(2, '0');
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
                 timerElement.innerHTML = `
-                    <div class="time-box"><span class="time-val">${d}</span><span class="time-label">Jours</span></div>
-                    <div class="time-box"><span class="time-val">${h}</span><span class="time-label">Heures</span></div>
-                    <div class="time-box"><span class="time-val">${m}</span><span class="time-label">Min</span></div>
-                    <div class="time-box"><span class="time-val">${s}</span><span class="time-label">Sec</span></div>
+                    <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Jours</span></div>
+                    <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Heures</span></div>
+                    <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
+                    <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Sec</span></div>
                 `;
             } else if (now >= raceDate && now <= raceEnd) {
                 timerElement.innerHTML = '<div class="race-status status-live">🟢 En cours !</div>';
@@ -680,10 +517,9 @@
             }
         }
 
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        setInterval(updateTimer, 1000); updateTimer();
 
-        // Animation au scroll
+        // Animations fluides
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
@@ -703,14 +539,11 @@
             });
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
     </script>
