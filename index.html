@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Turbo&Co - La communauté Le Mans Ultimate qui privilégie le fair-play, l'entraide et les courses propres.">
-    <meta name="keywords" content="Le Mans Ultimate, Racing, Simulation, LMU, Communauté, Fair-play, Open, Simracing">
+    <meta name="description" content="Turbo&Co - La communauté de Sim-Racing qui privilégie le fair-play, l'entraide et les courses propres.">
+    <meta name="keywords" content="Simracing, Racing, Simulation, LMU, Communauté, Fair-play, Open, Assetto Corsa">
     <meta name="author" content="Turbo&Co">
 
-    <title>Turbo&Co - Communauté LMU Francophone</title>
+    <!-- TON NOUVEAU TITRE EST LÀ 👇 -->
+    <title>Turbo&Co - Communauté Sim-Racing Francophone</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,21 +95,15 @@
         .stat-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
         .stat-label { font-size: 0.95rem; color: var(--racing-gray); font-weight: 600; }
 
-        /* Main Event (Weekend Special) */
+        /* Main Event */
         .next-race { background: linear-gradient(to right, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 100%), #15151E; border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 16px; padding: 2rem; margin: 3rem 0; position: relative; overflow: hidden; text-align: left; background-size: cover; background-position: center; }
         .race-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
         .race-tag { background: var(--racing-red); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
         .race-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .race-details { display: flex; gap: 2rem; color: #E5E7EB; font-size: 0.95rem; flex-wrap: wrap; font-weight: 600; }
+        .race-details { display: flex; gap: 2rem; color: #E5E7EB; font-size: 0.95rem; flex-wrap: wrap; font-weight: 600; align-items: center;}
 
-        /* Timer Télémétrie */
-        .race-timer { display: flex; gap: 0.5rem; align-items: center; }
-        .time-box { background: rgba(10, 10, 15, 0.8); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 8px; padding: 0.5rem 0.8rem; display: flex; flex-direction: column; align-items: center; min-width: 65px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
-        .time-val { font-size: 1.5rem; font-weight: 900; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
-        .time-label { font-size: 0.65rem; color: var(--racing-gray); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.2rem; }
-        .race-status { padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
-        .status-live { background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
-        .status-ended { background: rgba(255, 255, 255, 0.05); color: var(--racing-gray); border: 1px solid var(--racing-gray); }
+        /* Timer Discret */
+        #raceTimer span { display: inline-flex; align-items: center; gap: 8px; }
 
         /* Événements de la semaine */
         .events-section { padding: 2rem 0 4rem; }
@@ -137,7 +132,7 @@
         .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
         .feature-card p { color: var(--racing-gray); font-size: 0.95rem; }
 
-        /* Graphique Sparkline ELO (Nouveau) */
+        /* Graphique Sparkline ELO (CSS) */
         .elo-sparkline {
             display: flex; align-items: flex-end; height: 50px; gap: 4px;
             margin-top: 1.5rem; padding-bottom: 5px;
@@ -153,13 +148,10 @@
         .spark-bar:nth-child(4) { height: 50%; }
         .spark-bar:nth-child(5) { height: 75%; }
         .spark-bar:nth-child(6) { height: 90%; background: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
-        .elo-trend {
-            position: absolute; top: -25px; right: 0; color: var(--success); font-weight: bold; font-size: 0.9rem;
-        }
+        .elo-trend { position: absolute; top: -25px; right: 0; color: var(--success); font-weight: bold; font-size: 0.9rem; }
 
-        /* Classement & Iframe avec Nouveaux Boutons */
+        /* Classement & Iframe */
         .classement-section { padding: 4rem 0; }
-        
         .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
         .sheet-tab-btn {
             background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -198,6 +190,8 @@
                     <li><a href="#programme">Le Programme</a></li>
                     <li><a href="#charte">Notre Esprit</a></li>
                     <li><a href="#classement">Hall of Fame</a></li>
+                    <!-- Ajout du lien vers le nouvel espace pilote -->
+                    <li><a href="#profil-pilote">Espace Pilote</a></li>
                 </ul>
                 <a href="https://discord.gg/ZJU3r4JP48" class="btn-discord" target="_blank">Rejoindre le Discord</a>
             </nav>
@@ -210,7 +204,7 @@
             <div class="container">
                 <div class="hero-badge"><span class="live-dot"></span> Serveur Discord Ouvert</div>
                 <h1>LA COMMUNAUTÉ LMU<br>FRANCOPHONE</h1>
-                <p>Oubliez la pression et les algorithmes. Turbo&Co est un groupe de passionnés où le fair-play, l'entraide et la bonne humeur passent avant la ligne d'arrivée.</p>
+                <p>Oubliez la froideur des lobbys anonymes. Chez Turbo&Co, chaque virage se négocie avec fair-play et chaque course se termine avec le sourire. Passionnés de simracing, nous avons créé l'endroit où l’entraide est le moteur de chaque départ.</p>
 
                 <div class="stats-grid">
                     <article class="stat-card">
@@ -220,6 +214,7 @@
                     <article class="stat-card">
                         <span class="stat-icon">📅</span>
                         <span class="stat-label">3 Opens / Semaine</span>
+                    </article>
                     </article>
                     <article class="stat-card">
                         <span class="stat-icon">🎙️</span>
@@ -231,7 +226,7 @@
                 <div class="next-race" id="img-weekend_special">
                     <div class="race-header">
                         <span class="race-tag">🏆 L'Événement du Week-end</span>
-                        <div class="race-timer" id="raceTimer">Chargement...</div>
+                        <div id="raceTimer"></div>
                     </div>
                     <h2 class="race-title" id="title-weekend_special">Chargement de l'événement...</h2>
                     
@@ -332,7 +327,6 @@
                         <p>On préfère un pilote lent mais prévisible à un alien qui divebomb à chaque virage. Le respect de l'adversaire est notre règle d'or absolue.</p>
                     </article>
 
-                    <!-- CARTE SPARKLINE ELO -->
                     <article class="feature-card">
                         <div class="feature-icon">📈</div>
                         <h3>Progression ELO</h3>
@@ -351,9 +345,147 @@
                     <article class="feature-card">
                         <div class="feature-icon">🎓</div>
                         <h3>Ouvert aux Débutants</h3>
-                        <p>Vous débutez sur Le Mans Ultimate ? Pas de souci. Les pilotes plus expérimentés partagent leurs setups et leurs conseils en vocal.</p>
+                        <p>Vous débutez en SimRacing ? Pas de souci. Les pilotes plus expérimentés partagent leurs setups et leurs conseils en vocal.</p>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <!-- NOUVEL ONGLET : ESPACE PILOTE / STATS -->
+        <!--
+        =============================================================================
+        EXPLICATIONS POUR LE FUTUR : COMMENT RENDRE CE TABLEAU DE BORD DYNAMIQUE ?
+        =============================================================================
+        Ce bloc HTML est une maquette "en dur" (Statique).
+        Dans un futur proche, tu pourrais très bien ajouter cet "Espace Pilote" sur ton 
+        site web, sans changer de serveur, sans payer un centime, juste en exploitant 
+        la data que ton Google Sheets accumule silencieusement de semaine en semaine !
+
+        VOICI COMMENT TU FERAIS :
+        1. Tu crées un fichier CSV de ton onglet `📈 HISTORIQUE ELO` (comme on l'a 
+           fait pour les inscriptions).
+        2. Tu ajoutes un petit champ de recherche HTML ici : 
+           <input type="text" id="searchDriver" placeholder="Entrez votre pseudo...">
+        3. En JavaScript (avec un `fetch()`), tu scannes les 13 colonnes de ton CSV 
+           pour isoler uniquement les lignes qui contiennent le pseudo tapé.
+        4. Le code calcule à la volée :
+           - Victoires = Lignes où la colonne 4 (Position) vaut 1
+           - ELO Actuel = Valeur de la colonne 6 de sa toute dernière ligne
+           - Moyenne Incidents = Somme de la colonne 9 divisée par le nb de courses
+        5. Tu injectes ces variables dans les balises <span> ci-dessous via leurs ID !
+        =============================================================================
+        -->
+        <section class="features" id="profil-pilote">
+            <div class="container">
+                <h2 class="section-title">Espace Pilote (Aperçu)</h2>
+                <p style="color: var(--racing-gray); margin-bottom: 2rem;">
+                    Dans un futur proche, tu pourrais très bien ajouter cet "Espace Pilote" sur ton site web, sans changer de serveur, sans payer un centime, juste en exploitant la data que ton Google Sheets accumule silencieusement de semaine en semaine !
+                </p>
+
+                <!-- En-tête du profil -->
+                <div style="background: linear-gradient(135deg, rgba(225, 6, 0, 0.15) 0%, rgba(21, 21, 30, 0.9) 100%); border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 12px; padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
+                    
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <div style="width: 80px; height: 80px; background: var(--racing-dark); border: 2px solid var(--racing-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            🏁
+                        </div>
+                        <div>
+                            <!-- ID prêt pour l'injection JS future : id="driver-name" -->
+                            <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 0.2rem;">AlpineRider_7</h3>
+                            <span style="background: var(--gold); color: black; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 800; font-size: 0.8rem;">LICENCE PRO</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; text-align: center;">
+                        <div>
+                            <span style="font-size: 0.9rem; color: var(--racing-gray); text-transform: uppercase;">iRating (ELO)</span>
+                            <!-- ID prêt pour l'injection JS future : id="driver-elo" -->
+                            <div style="font-size: 2.2rem; font-weight: 900; color: white;">2847</div>
+                        </div>
+                        <div>
+                            <span style="font-size: 0.9rem; color: var(--racing-gray); text-transform: uppercase;">Safety Rating</span>
+                            <!-- ID prêt pour l'injection JS future : id="driver-sr" -->
+                            <div style="font-size: 2.2rem; font-weight: 900; color: var(--success);">SR 4.8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grille de Stats -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <div class="stat-card" style="padding: 1.5rem;">
+                        <span style="font-size: 0.9rem; color: var(--racing-gray);">VICTOIRES</span>
+                        <!-- ID prêt pour l'injection JS future -->
+                        <div style="font-size: 1.8rem; font-weight: 900; color: var(--gold);">26.7%</div>
+                    </div>
+                    <div class="stat-card" style="padding: 1.5rem;">
+                        <span style="font-size: 0.9rem; color: var(--racing-gray);">PODIUMS</span>
+                        <!-- ID prêt pour l'injection JS future -->
+                        <div style="font-size: 1.8rem; font-weight: 900; color: white;">62.2%</div>
+                    </div>
+                    <div class="stat-card" style="padding: 1.5rem;">
+                        <span style="font-size: 0.9rem; color: var(--racing-gray);">INCIDENTS / COURSE</span>
+                        <!-- ID prêt pour l'injection JS future -->
+                        <div style="font-size: 1.8rem; font-weight: 900; color: var(--success);">0.2</div>
+                    </div>
+                </div>
+
+                <!-- Historique Récent avec le système "Zero-Sum" -->
+                <div style="background: var(--racing-card); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden;">
+                    <div style="padding: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-weight: 700;">Historique des dernières courses</div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem;">
+                            <thead>
+                                <tr style="background: rgba(255, 255, 255, 0.02); color: var(--racing-gray); font-size: 0.8rem; text-transform: uppercase;">
+                                    <th style="padding: 1rem;">Date</th>
+                                    <th style="padding: 1rem;">Course</th>
+                                    <th style="padding: 1rem;">Force Serveur (SOF)</th>
+                                    <th style="padding: 1rem;">Position</th>
+                                    <th style="padding: 1rem;">Variation ELO</th>
+                                    <th style="padding: 1rem;">Nouvel ELO</th>
+                                </tr>
+                            </thead>
+                            <!--
+                            =============================================================================
+                            EXPLICATION BOUCLE JS FUTURE :
+                            Une fois ton CSV de l'historique chargé, tu pourras faire un "forEach()"
+                            sur les 5 dernières lignes du pilote, et générer chaque <tr> dynamiquement
+                            en utilisant `innerHTML` (comme on le fait avec les cartes de courses !).
+                            =============================================================================
+                            -->
+                            <tbody id="driver-history-body">
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 1rem; color: var(--racing-gray);">15/03/2026</td>
+                                    <td style="padding: 1rem; font-weight: 700;">Spa 6H</td>
+                                    <td style="padding: 1rem; color: var(--gold);">2450</td>
+                                    <td style="padding: 1rem; font-weight: 900;">1er</td>
+                                    <td style="padding: 1rem; color: var(--success); font-weight: 700;">+32 ↗</td>
+                                    <td style="padding: 1rem; font-weight: 700;">2847</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                                    <td style="padding: 1rem; color: var(--racing-gray);">08/03/2026</td>
+                                    <td style="padding: 1rem; font-weight: 700;">Monza Sprint</td>
+                                    <td style="padding: 1rem; color: var(--gold);">1950</td>
+                                    <td style="padding: 1rem; font-weight: 900;">2ème</td>
+                                    <td style="padding: 1rem; color: #EF4444; font-weight: 700;">-10 ↘</td>
+                                    <td style="padding: 1rem; font-weight: 700;">2815</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; color: var(--racing-gray);">01/03/2026</td>
+                                    <td style="padding: 1rem; font-weight: 700;">Nürburgring</td>
+                                    <td style="padding: 1rem; color: var(--gold);">2600</td>
+                                    <td style="padding: 1rem; font-weight: 900;">5ème</td>
+                                    <td style="padding: 1rem; color: var(--success); font-weight: 700;">+15 ↗</td>
+                                    <td style="padding: 1rem; font-weight: 700;">2825</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="padding: 1rem; text-align: center; font-size: 0.8rem; color: var(--racing-gray); font-style: italic;">
+                            Exemple de lecture SOF : À Monza, le SOF était faible (1950). En finissant 2ème, l'algorithme s'attendait à une victoire écrasante vu votre ELO (2825). Vous perdez donc 10 points malgré le podium !
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -363,16 +495,12 @@
                 <h2 class="section-title">Hall of Fame</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 2rem;">Parce qu'on aime quand même la bagarre (propre). Classement basé sur l'assiduité et les événements.</p>
                 
-                <!-- BOUTONS DE NAVIGATION DE L'IFRAME -->
                 <div class="sheet-tabs">
-                    <!-- GID 688402669 correspond à l'onglet "DASHBOARD" -->
                     <button class="sheet-tab-btn active" onclick="changeSheet('688402669', this)">🏠 Dashboard</button>
-                    <!-- GID 431027575 correspond à l'onglet "CLASSEMENT" -->
                     <button class="sheet-tab-btn" onclick="changeSheet('431027575', this)">🏆 Classement Complet</button>
                 </div>
 
                 <div class="sheet-container">
-                    <!-- IFRAME CONNECTÉE AU NOUVEAU LIEN PUBLIC -->
                     <iframe 
                         id="ranking-iframe"
                         class="sheet-iframe"
@@ -399,33 +527,29 @@
 
     <script>
         // ----------------------------------------------------
-        // LECTURE DYNAMIQUE DU GOOGLE SHEETS (VIA LE LIEN CSV)
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            // Lien CSV public fourni
             const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pub?gid=1162198900&single=true&output=csv';
 
             try {
                 const response = await fetch(urlCSV);
                 const csvData = await response.text();
-                const lignes = csvData.split('\n').slice(1); // Ignorer l'en-tête
+                const lignes = csvData.split('\n').slice(1); 
 
                 lignes.forEach(ligne => {
-                    // Regex pour supporter les virgules dans le texte du Google Sheet
                     const col = ligne.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
 
                     if (col.length >= 9) {
-                        const id = col[0]; // id_course (ex: weekend_special, monday_open, etc.)
+                        const id = col[0]; 
 
                         if (document.getElementById('title-' + id)) {
-                            // Injection des textes
                             if(document.getElementById('day-' + id)) document.getElementById('day-' + id).innerText = col[1];    
                             document.getElementById('title-' + id).innerText = col[2];  
                             document.getElementById('time-' + id).innerText = col[3];   
                             document.getElementById('cat-' + id).innerText = col[4];    
                             document.getElementById('track-' + id).innerText = col[5];  
                             
-                            // Image avec prise en charge de GitHub ?raw=true
                             let imgUrl = col[6];
                             if(imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) imgUrl += "?raw=true";
                             
@@ -436,7 +560,6 @@
                                 imgContainer.style.backgroundImage = `url('${imgUrl}')`;
                             }
 
-                            // Statut & Couleurs
                             const statusEl = document.getElementById('status-' + id);
                             const statusTxt = col[7];
                             statusEl.innerText = statusTxt;
@@ -445,7 +568,6 @@
                             else if(statusTxt.includes('🟠')) statusEl.style.color = '#FBBF24';
                             else if(statusTxt.includes('🟢')) statusEl.style.color = '#10B981';
 
-                            // Lien Discord
                             document.getElementById('link-' + id).href = col[8];
                         }
                     }
@@ -462,17 +584,14 @@
         // ----------------------------------------------------
         function changeSheet(gid, btnElement) {
             const iframe = document.getElementById('ranking-iframe');
-            
-            // Changement d'URL avec le nouveau lien de base et le GID sélectionné
             iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pubhtml?gid=${gid}&single=true&widget=false&headers=false&chrome=false&gridlines=false`;
             
-            // Mise à jour de la couleur des boutons
             document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
         }
 
         // ----------------------------------------------------
-        // GESTION DU MENU MOBILE ET ANIMATIONS AU SCROLL
+        // GESTION DU MENU MOBILE ET ANIMATIONS
         // ----------------------------------------------------
         const nav = document.getElementById('navLinks');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -489,8 +608,8 @@
             });
         });
 
-// ----------------------------------------------------
-        // TIMER DISCRET (RÉGLÉ SUR LE 28 MARS)
+        // ----------------------------------------------------
+        // TIMER DISCRET 
         // ----------------------------------------------------
         function updateTimer() {
             const raceDate = new Date('2026-03-28T21:00:00');
@@ -505,7 +624,6 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
-                // Design format "pilule" discret et moderne
                 timerElement.innerHTML = `
                     <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 600; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: inline-flex; align-items: center; gap: 8px;">
                         ⏱️ Départ dans 
@@ -531,7 +649,7 @@
 
         setInterval(updateTimer, 1000); updateTimer();
 
-        // Animations fluides
+        // Scroll Animations
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
