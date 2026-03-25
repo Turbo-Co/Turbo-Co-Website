@@ -711,15 +711,18 @@
     </footer>
 
     <script>
-        // ----------------------------------------------------
+// ----------------------------------------------------
         // LECTURE DYNAMIQUE DU GOOGLE SHEETS - CSV 
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?output=csv';
+            // 🔴 N'OUBLIE PAS DE METTRE LE LIEN CSV AVEC LE "gid=..." ICI :
+            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?gid=2003087742&single=true&output=csv';
 
             try {
                 const response = await fetch(urlCSV);
                 const csvData = await response.text();
+                
+                // 🐛 CORRECTION DU CRASH ICI :
                 const lignes = csvData.split('\n').slice(1); 
 
                 lignes.forEach(ligne => {
