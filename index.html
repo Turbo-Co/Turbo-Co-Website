@@ -7,63 +7,100 @@
     <meta name="keywords" content="Simracing, Racing, Simulation, LMU, Communauté, Fair-play, Open, Assetto Corsa">
     <meta name="author" content="Turbo&Co">
 
-    <!-- TON NOUVEAU TITRE EST LÀ 👇 -->
     <title>Turbo&Co - Communauté Sim-Racing Francophone</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Chargement de Montserrat (Titres massifs) et Titillium Web (Textes) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Titillium+Web:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --racing-red: #E10600;
-            --racing-dark: #0A0A0F;
-            --racing-card: #15151E;
-            --racing-gray: #B0B0C0;
+            /* Palette K-NETTE MOTORSHPORT */
+            --racing-red: #E31828; 
+            --racing-red-dark: #A61118; 
+            --racing-dark: #0B0F19; 
+            --racing-card: #131928; 
+            --racing-gray: #8A91A4; 
+            --silver: #E8EAEF; 
             --gold: #FFD700;
             --success: #10B981;
-            --glass: rgba(21, 21, 30, 0.8);
+            --discord: #5865F2;
+            --glass: rgba(19, 25, 40, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body { font-family: 'Titillium Web', sans-serif; background: var(--racing-dark); color: white; overflow-x: hidden; line-height: 1.6; }
+        body { 
+            font-family: 'Titillium Web', sans-serif; 
+            background: var(--racing-dark); 
+            color: white; 
+            overflow-x: hidden; 
+            line-height: 1.6; 
+        }
+
+        /* 폰 Application de la police massive façon K-NETTE */
+        h1, h2, h3, .logo, .btn-action, .btn-discord, .hero-badge, .race-tag, .map-title, .sheet-tab-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        /* Damier de course (Checkerboard) tout en haut du site */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background-image: 
+                linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF),
+                linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF);
+            background-color: #000;
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+            z-index: 9999;
+        }
 
         .bg-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(225, 6, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 6, 0, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: -2;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: -2;
         }
 
         @media (prefers-reduced-motion: no-preference) { .bg-grid { animation: gridMove 60s linear infinite; } }
-        @keyframes gridMove { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+        @keyframes gridMove { 0% { transform: translate(0, 0); } 100% { transform: translate(60px, 60px); } }
 
         .glow-red {
-            position: fixed; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(225, 6, 0, 0.15) 0%, transparent 70%);
-            top: -200px; right: -200px; z-index: -1; pointer-events: none;
+            position: fixed; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(227, 24, 40, 0.08) 0%, transparent 60%);
+            top: -200px; right: -300px; z-index: -1; pointer-events: none;
         }
 
         /* Header */
-        header { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(225, 6, 0, 0.3); z-index: 1000; padding: 1rem 0; }
+        header { position: fixed; top: 8px; width: 100%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid rgba(255, 255, 255, 0.05); z-index: 1000; padding: 1rem 0; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         nav { display: flex; justify-content: space-between; align-items: center; }
 
-        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: white; }
+        .logo { font-size: 2rem; letter-spacing: -2px; text-decoration: none; color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .logo span { color: var(--racing-red); }
-        .logo::before { content: '🏎️'; font-size: 1.5rem; }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--racing-red); }
+        .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-style: italic; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--silver); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        .btn-discord { background: #5865F2; color: white; padding: 0.6rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent; }
-        .btn-discord:hover { background: transparent; border-color: #5865F2; }
+        .btn-discord { background: var(--discord); color: white; padding: 0.6rem 1.5rem; border-radius: 4px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent; }
+        .btn-discord:hover { background: transparent; border-color: var(--discord); }
 
-        .btn-action { display: inline-block; background: var(--racing-red); color: white; padding: 0.6rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.3s ease; text-align: center; border: none; cursor: pointer; }
-        .btn-action:hover { background: #b30500; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(225, 6, 0, 0.4); }
-        .btn-card { width: 100%; margin-top: 1.5rem; background: rgba(225, 6, 0, 0.1); color: var(--racing-red); border: 1px solid rgba(225, 6, 0, 0.3); }
-        .btn-card:hover { background: var(--racing-red); color: white; }
+        .btn-action { 
+            background: linear-gradient(180deg, var(--racing-red) 0%, var(--racing-red-dark) 100%); 
+            color: white; padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; 
+            font-size: 1.1rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; 
+            border: 2px solid white; box-shadow: 0 10px 20px rgba(227, 24, 40, 0.4); cursor: pointer; 
+        }
+        .btn-action:hover { background: white; color: var(--racing-red-dark); border-color: var(--racing-red); transform: translateY(-3px); }
+        
+        .btn-card { width: 100%; margin-top: 1.5rem; background: var(--racing-card); border-color: rgba(255,255,255,0.2); box-shadow: none; color: white;}
+        .btn-card:hover { background: white; color: var(--racing-dark); }
 
         /* Menu Mobile */
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; z-index: 1001; }
@@ -74,104 +111,301 @@
 
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 70px; left: 0; width: 100%; background: rgba(10, 10, 15, 0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; transform: translateY(-150%); transition: transform 0.3s ease-in-out; border-bottom: 2px solid var(--racing-red); }
+            .nav-links { position: fixed; top: 78px; left: 0; width: 100%; background: var(--racing-dark); flex-direction: column; padding: 2rem; gap: 1.5rem; transform: translateY(-150%); transition: transform 0.3s ease-in-out; border-bottom: 4px solid var(--racing-red); }
             .nav-links.active { transform: translateY(0); }
             .btn-discord { display: none; }
         }
 
         /* Hero Section */
-        .hero { margin-top: 100px; padding: 4rem 0; text-align: center; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(225, 6, 0, 0.1); border: 1px solid rgba(225, 6, 0, 0.3); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.85rem; color: var(--racing-red); font-weight: 600; margin-bottom: 2rem; }
-        .live-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: blink 1s infinite; }
+        .hero { margin-top: 120px; padding: 4rem 0; text-align: center; }
+        
+        .hero-badge { 
+            background: var(--racing-card); border: 2px solid rgba(255,255,255,0.1); 
+            padding: 0.6rem 1.5rem; border-radius: 4px; font-size: 0.9rem; 
+            color: var(--silver); margin-bottom: 2rem; transform: skewX(-10deg);
+        }
+        .hero-badge span { transform: skewX(10deg); display: inline-flex; align-items: center; gap: 8px;} 
+        
+        .live-dot { width: 10px; height: 10px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, var(--racing-red) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } }
+        .hero h1 { 
+            font-size: 4rem; margin-bottom: 1rem; color: white; letter-spacing: -2px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #8A91A4 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            line-height: 1.1; filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.5));
+        }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
         .hero p { font-size: 1.2rem; color: var(--racing-gray); max-width: 650px; margin: 0 auto 3rem; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .stat-card { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; text-align: center; transition: transform 0.3s; }
-        .stat-card:hover { border-color: rgba(225, 6, 0, 0.3); transform: translateY(-5px); }
+        .stat-card { background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .stat-card:hover { border-color: var(--silver); transform: translateY(-5px); }
         .stat-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.95rem; color: var(--racing-gray); font-weight: 600; }
+        .stat-label { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--silver); font-weight: 900; font-style: italic; text-transform: uppercase;}
 
-        /* Main Event */
-        .next-race { background: linear-gradient(to right, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 100%), #15151E; border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 16px; padding: 2rem; margin: 3rem 0; position: relative; overflow: hidden; text-align: left; background-size: cover; background-position: center; }
+        /* Main Event (Weekend Special) */
+        .next-race { 
+            background: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), #131928; 
+            border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5rem; margin: 3rem 0; 
+            position: relative; overflow: hidden; text-align: left; background-size: cover; background-position: center; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
         .race-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .race-tag { background: var(--racing-red); color: white; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
-        .race-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .race-details { display: flex; gap: 2rem; color: #E5E7EB; font-size: 0.95rem; flex-wrap: wrap; font-weight: 600; align-items: center;}
+        
+        .race-tag { 
+            background: var(--racing-red); color: white; padding: 0.4rem 1.2rem; border-radius: 2px; 
+            font-size: 0.9rem; transform: skewX(-10deg); display: inline-block;
+        }
+        .race-tag span { display: block; transform: skewX(10deg); }
+        .race-title { font-size: 2.2rem; margin-bottom: 0.5rem; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .race-details { display: flex; gap: 2rem; color: var(--silver); font-size: 1rem; flex-wrap: wrap; font-weight: 700; align-items: center;}
 
         /* Timer Discret */
         #raceTimer span { display: inline-flex; align-items: center; gap: 8px; }
 
         /* Événements de la semaine */
         .events-section { padding: 2rem 0 4rem; }
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
-        .section-title::before { content: ''; width: 4px; height: 30px; background: var(--racing-red); border-radius: 2px; }
+        .section-title { font-size: 2.5rem; margin-bottom: 2rem; display: inline-block; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 60px; height: 4px; background: var(--racing-red); }
+        
         .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         
-        .event-card { background: var(--racing-card); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; position: relative; }
-        .event-card:hover { transform: translateY(-5px); border-color: rgba(225, 6, 0, 0.5); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
-        .event-img-container { height: 130px; background-size: cover; background-position: center; position: relative; border-bottom: 3px solid var(--racing-red); }
-        .event-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(10,10,15,0.8), transparent); }
-        .event-day-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); padding: 0.3rem 0.8rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
+        .event-card { background: var(--racing-card); border-radius: 8px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
+        .event-card:hover { transform: translateY(-5px); border-color: var(--silver); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
+        .event-img-container { height: 140px; background-size: cover; background-position: center; position: relative; border-bottom: 4px solid var(--racing-red); }
+        .event-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(11,15,25,0.9), transparent); }
+        
+        .event-day-badge { position: absolute; top: 10px; right: 10px; background: white; color: black; padding: 0.3rem 1rem; border-radius: 2px; font-size: 0.85rem; z-index: 2; transform: skewX(-10deg);}
         
         .event-body { padding: 1.5rem; }
-        .event-title-card { font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 1.2rem; }
-        .event-info-list { display: flex; flex-direction: column; gap: 0.6rem; }
-        .event-info-row { display: flex; align-items: center; gap: 0.8rem; color: var(--racing-gray); font-size: 0.95rem; }
+        .event-title-card { font-size: 1.5rem; color: white; margin-bottom: 1.2rem; }
+        .event-info-list { display: flex; flex-direction: column; gap: 0.8rem; }
+        .event-info-row { display: flex; align-items: center; gap: 0.8rem; color: var(--racing-gray); font-size: 0.95rem; font-weight: 600;}
         .event-icon { width: 20px; text-align: center; opacity: 0.9; }
 
         /* Charte / Règles */
-        .features { padding: 4rem 0; background: rgba(0, 0, 0, 0.3); }
+        .features { padding: 4rem 0; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .feature-card { background: var(--glass); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
-        .feature-card:hover { border-color: rgba(225, 6, 0, 0.3); }
+        .feature-card { background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem; transition: all 0.3s; }
+        .feature-card:hover { border-color: rgba(255,255,255,0.2); }
         .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: white;}
         .feature-card p { color: var(--racing-gray); font-size: 0.95rem; }
 
-        /* Graphique Sparkline ELO (CSS) */
-        .elo-sparkline {
-            display: flex; align-items: flex-end; height: 50px; gap: 4px;
-            margin-top: 1.5rem; padding-bottom: 5px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative;
-        }
-        .spark-bar {
-            flex: 1; background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px 2px 0 0; transition: height 1s ease;
-        }
+        /* Graphique Sparkline ELO */
+        .elo-sparkline { display: flex; align-items: flex-end; height: 50px; gap: 4px; margin-top: 1.5rem; padding-bottom: 5px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative; }
+        .spark-bar { flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 2px 2px 0 0; transition: height 1s ease; }
         .spark-bar:nth-child(1) { height: 20%; }
         .spark-bar:nth-child(2) { height: 30%; }
         .spark-bar:nth-child(3) { height: 25%; }
         .spark-bar:nth-child(4) { height: 50%; }
         .spark-bar:nth-child(5) { height: 75%; }
-        .spark-bar:nth-child(6) { height: 90%; background: var(--success); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
-        .elo-trend { position: absolute; top: -25px; right: 0; color: var(--success); font-weight: bold; font-size: 0.9rem; }
+        .spark-bar:nth-child(6) { height: 90%; background: var(--racing-red); box-shadow: 0 0 10px rgba(227, 24, 40, 0.5); }
+        .elo-trend { position: absolute; top: -25px; right: 0; color: var(--silver); font-weight: 900; font-style: italic; font-size: 0.9rem; }
 
+        /* ============================================================
+           SECTION DISCORD — LE PADDOCK
+        ============================================================ */
+        .discord-section { padding: 4rem 0; }
+
+        /* Compteur hero dynamique */
+        .discord-live-count {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(88, 101, 242, 0.12);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 0.35rem 0.9rem; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 700;
+            font-family: 'Titillium Web', sans-serif;
+            font-style: normal; text-transform: none;
+            margin-top: 0.4rem; color: #a5b4fc;
+        }
+        .discord-live-count .dot-online {
+            width: 8px; height: 8px; background: var(--success);
+            border-radius: 50%; box-shadow: 0 0 8px var(--success);
+            animation: blink 1.2s infinite; flex-shrink: 0;
+        }
+
+        /* Bannière principale */
+        .discord-banner {
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.08) 0%, rgba(11, 15, 25, 0.9) 100%);
+            border: 2px solid rgba(88, 101, 242, 0.25);
+            border-radius: 8px;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 3rem; padding: 3rem; align-items: start;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        @media (max-width: 900px) { .discord-banner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; } }
+
+        .discord-info h2 { font-size: 2.2rem; margin-bottom: 1rem; color: white; line-height: 1.1; }
+        @media (max-width: 768px) { .discord-info h2 { font-size: 1.7rem; } }
+        .discord-info > p { color: var(--racing-gray); font-size: 1rem; margin-bottom: 1.8rem; }
+
+        .discord-features { list-style: none; margin-bottom: 2rem; }
+        .discord-features li {
+            margin-bottom: 0.9rem; font-size: 1rem;
+            display: flex; align-items: center; gap: 0.8rem;
+            font-weight: 600; color: white;
+            font-family: 'Titillium Web', sans-serif;
+            font-style: normal; text-transform: none;
+        }
+        .discord-features li span {
+            background: rgba(88, 101, 242, 0.2); padding: 0.35rem 0.45rem;
+            border-radius: 4px; font-size: 1.1rem; flex-shrink: 0;
+        }
+
+        .btn-discord-large {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem;
+            background: var(--discord); color: white; padding: 0.9rem 2rem; border-radius: 4px;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;
+            font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+            text-decoration: none; transition: all 0.3s; border: 2px solid transparent;
+        }
+        .btn-discord-large:hover {
+            background: transparent; border-color: var(--discord); color: white;
+            transform: translateY(-3px); box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3);
+        }
+
+        /* ── Widget custom (remplace l'iframe) ── */
+        .discord-custom-widget {
+            background: #1e2233; border-radius: 8px;
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Header widget */
+        .dcw-header {
+            background: linear-gradient(135deg, #2a2f45 0%, #1a1f35 100%);
+            padding: 1.2rem 1.5rem;
+            display: flex; align-items: center; gap: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .dcw-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--racing-red);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        .dcw-server-name {
+            font-family: 'Montserrat', sans-serif; font-weight: 900;
+            font-style: italic; font-size: 1.1rem; color: white;
+        }
+        .dcw-counts {
+            margin-top: 0.2rem;
+            display: flex; gap: 1rem; font-size: 0.82rem;
+            font-family: 'Titillium Web', sans-serif; font-style: normal;
+        }
+        .dcw-count-item { display: flex; align-items: center; gap: 0.4rem; color: var(--racing-gray); }
+        .dcw-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .dcw-dot--online { background: var(--success); box-shadow: 0 0 6px var(--success); }
+        .dcw-dot--members { background: #747f8d; }
+
+        /* Body widget */
+        .dcw-body { padding: 1rem 1.2rem; }
+
+        .dcw-section-label {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--racing-gray);
+            font-family: 'Titillium Web', sans-serif; font-style: normal;
+            margin-bottom: 0.6rem; margin-top: 0.8rem;
+        }
+
+        /* Vocal channels */
+        .dcw-voice-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+
+        .dcw-voice-channel {
+            background: rgba(255,255,255,0.03);
+            border-radius: 4px; padding: 0.5rem 0.8rem;
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.88rem; color: var(--racing-gray);
+            font-family: 'Titillium Web', sans-serif; font-style: normal;
+            transition: background 0.2s;
+        }
+        .dcw-voice-channel.has-users {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: white;
+        }
+        .dcw-voice-icon { font-size: 0.9rem; opacity: 0.6; }
+        .dcw-voice-channel.has-users .dcw-voice-icon { opacity: 1; }
+        .dcw-voice-users { margin-left: auto; display: flex; gap: 0.3rem; align-items: center; }
+        .dcw-user-avatar {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: #5865F2; font-size: 0.6rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1); color: white; font-weight: 700;
+        }
+        .dcw-user-count-badge {
+            font-size: 0.75rem; color: var(--success);
+            font-weight: 700; background: rgba(16,185,129,0.15);
+            padding: 0.1rem 0.4rem; border-radius: 50px;
+        }
+
+        /* Prochain event Sesh */
+        .dcw-next-event {
+            background: rgba(227, 24, 40, 0.06);
+            border: 1px solid rgba(227, 24, 40, 0.2);
+            border-radius: 6px; padding: 0.9rem 1rem;
+            margin-bottom: 1rem;
+        }
+        .dcw-event-title {
+            font-family: 'Montserrat', sans-serif; font-weight: 900;
+            font-style: italic; font-size: 1rem; color: white; margin-bottom: 0.3rem;
+        }
+        .dcw-event-meta { font-size: 0.82rem; color: var(--racing-gray); font-style: normal; }
+        .dcw-event-attendees {
+            display: flex; gap: 1rem; margin-top: 0.6rem; font-size: 0.8rem;
+        }
+        .dcw-att-yes { color: var(--success); font-weight: 700; }
+        .dcw-att-maybe { color: var(--gold); font-weight: 700; }
+        .dcw-att-no { color: var(--racing-gray); }
+
+        /* Footer widget */
+        .dcw-footer {
+            padding: 0.8rem 1.2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: center;
+        }
+        .dcw-join-btn {
+            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+            background: var(--discord); color: white; padding: 0.65rem 1.5rem;
+            border-radius: 4px; font-family: 'Montserrat', sans-serif;
+            font-weight: 900; font-style: italic; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            text-decoration: none; transition: all 0.3s; border: 2px solid transparent;
+            width: 100%;
+        }
+        .dcw-join-btn:hover { background: transparent; border-color: var(--discord); }
+        
         /* Classement & Iframe */
         .classement-section { padding: 4rem 0; }
         .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
         .sheet-tab-btn {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 8px;
-            font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 4px;
+            cursor: pointer; transition: all 0.3s ease; font-size: 1rem;
         }
-        .sheet-tab-btn:hover { background: rgba(225, 6, 0, 0.1); color: white; }
-        .sheet-tab-btn.active { background: var(--racing-red); color: white; border-color: var(--racing-red); box-shadow: 0 4px 15px rgba(225, 6, 0, 0.3); }
+        .sheet-tab-btn:hover { background: rgba(225, 24, 40, 0.1); color: white; }
+        .sheet-tab-btn.active { background: var(--racing-red); color: white; border-color: var(--racing-red); box-shadow: 0 4px 15px rgba(227, 24, 40, 0.4); }
 
-        .sheet-container { background: var(--racing-card); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); -webkit-overflow-scrolling: touch; }
-        .sheet-iframe { width: 100%; height: 700px; border: none; display: block; border-radius: 12px; }
+        .sheet-container { background: var(--racing-card); border-radius: 8px; border: 2px solid rgba(255, 255, 255, 0.05); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); -webkit-overflow-scrolling: touch; }
+        .sheet-iframe { width: 100%; height: 700px; border: none; display: block; border-radius: 8px; }
 
         /* Footer */
-        footer { background: var(--racing-card); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem 0; text-align: center; margin-top: 2rem; }
-        .footer-logo { font-size: 1.5rem; font-weight: 900; margin-bottom: 1rem; }
+        footer { background: #000000; border-top: 4px solid var(--racing-card); padding: 3rem 0; text-align: center; margin-top: 2rem; }
+        .footer-logo { font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: -1px; }
         .footer-logo span { color: var(--racing-red); }
         .social-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
-        .social-links a { color: var(--racing-gray); text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
-        .social-links a:hover { color: var(--racing-red); }
-        .copyright { color: #666; font-size: 0.9rem; margin-top: 1rem; }
+        .social-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; transition: color 0.3s; }
+        .social-links a:hover { color: var(--silver); }
+        .copyright { color: rgba(255,255,255,0.3); font-size: 0.9rem; margin-top: 1rem; }
+
+        @media (max-width: 768px) {
+            .category-card { flex-direction: column; text-align: center; }
+            .channel-tags { justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -189,11 +423,10 @@
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#programme">Le Programme</a></li>
                     <li><a href="#charte">Notre Esprit</a></li>
+                    <li><a href="#communaute">Le Paddock</a></li>
                     <li><a href="#classement">Hall of Fame</a></li>
-                    <!-- Ajout du lien vers le nouvel espace pilote -->
-                    <li><a href="#profil-pilote">Espace Pilote</a></li>
                 </ul>
-                <a href="https://discord.gg/ZJU3r4JP48" class="btn-discord" target="_blank">Rejoindre le Discord</a>
+                <a href="https://discord.gg/dREZzRbHKG" class="btn-discord" target="_blank">Rejoindre le Discord</a>
             </nav>
         </div>
     </header>
@@ -202,7 +435,7 @@
         <!-- HERO -->
         <section class="hero" id="accueil">
             <div class="container">
-                <div class="hero-badge"><span class="live-dot"></span> Serveur Discord Ouvert</div>
+                <div class="hero-badge"><span><span class="live-dot"></span> Serveur Discord Ouvert</span></div>
                 <h1>LA COMMUNAUTÉ SIMRACING<br>FRANCOPHONE</h1>
                 <p>Bienvenue là où le fair-play est la seule règle d'or. Turbo&Co rassemble ceux pour qui la simulation rime avec convivialité. Nous avons créé l'espace que nous cherchions : un groupe soudé où chaque virage est un partage et chaque course une expérience humaine.</p>
 
@@ -215,21 +448,24 @@
                         <span class="stat-icon">📅</span>
                         <span class="stat-label">3 Opens / Semaine</span>
                     </article>
-                    </article>
                     <article class="stat-card">
                         <span class="stat-icon">🎙️</span>
                         <span class="stat-label">Discord Actif</span>
+                        <div class="discord-live-count" id="heroMemberCount">
+                            <span class="dot-online"></span>
+                            <span id="heroOnlineCount">...</span> en ligne
+                        </div>
                     </article>
                 </div>
 
                 <!-- MAIN EVENT (WEEKEND SPECIAL) -->
                 <div class="next-race" id="img-weekend_special">
                     <div class="race-header">
-                        <span class="race-tag">🏆 L'Événement du Week-end</span>
+                        <span class="race-tag"><span>🏆 L'Événement du Week-end</span></span>
                         <div id="raceTimer"></div>
                     </div>
                     <h2 class="race-title" id="title-weekend_special">Chargement de l'événement...</h2>
-                    
+
                     <div class="race-details">
                         <span>📅 <span id="time-weekend_special">...</span></span>
                         <span>🏎️ <span id="cat-weekend_special">...</span></span>
@@ -237,7 +473,7 @@
                         <span id="status-weekend_special" style="font-weight: bold;">⏳ Vérification des places...</span>
                     </div>
 
-                    <div style="margin-top: 1.5rem;">
+                    <div style="margin-top: 2rem;">
                         <a id="link-weekend_special" href="https://discord.gg/dREZzRbHKG" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
                     </div>
                 </div>
@@ -249,7 +485,7 @@
             <div class="container">
                 <h2 class="section-title">Nos Opens Réguliers</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 3rem;">Des courses sans prise de tête les soirs de semaine pour rouler ensemble, tester des setups et s'améliorer.</p>
-                
+
                 <div class="events-grid">
                     <!-- LUNDI -->
                     <article class="event-card" id="card-monday_open">
@@ -267,7 +503,7 @@
                                     <span id="status-monday_open" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-monday_open" href="https://discord.gg/ZBwJseDKCv" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-monday_open" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
@@ -287,7 +523,7 @@
                                     <span id="status-wednesday_sprint" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-wednesday_sprint" href="https://discord.gg/fPP3UxA8QF" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-wednesday_sprint" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
@@ -307,7 +543,7 @@
                                     <span id="status-friday_fun" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-friday_fun" href="https://discord.gg/sXVXQVxKN8" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-friday_fun" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
                 </div>
@@ -351,141 +587,90 @@
             </div>
         </section>
 
-        <!-- NOUVEL ONGLET : ESPACE PILOTE / STATS -->
-        <!--
-        =============================================================================
-        EXPLICATIONS POUR LE FUTUR : COMMENT RENDRE CE TABLEAU DE BORD DYNAMIQUE ?
-        =============================================================================
-        Ce bloc HTML est une maquette "en dur" (Statique).
-        Dans un futur proche, tu pourrais très bien ajouter cet "Espace Pilote" sur ton 
-        site web, sans changer de serveur, sans payer un centime, juste en exploitant 
-        la data que ton Google Sheets accumule silencieusement de semaine en semaine !
-
-        VOICI COMMENT TU FERAIS :
-        1. Tu crées un fichier CSV de ton onglet `📈 HISTORIQUE ELO` (comme on l'a 
-           fait pour les inscriptions).
-        2. Tu ajoutes un petit champ de recherche HTML ici : 
-           <input type="text" id="searchDriver" placeholder="Entrez votre pseudo...">
-        3. En JavaScript (avec un `fetch()`), tu scannes les 13 colonnes de ton CSV 
-           pour isoler uniquement les lignes qui contiennent le pseudo tapé.
-        4. Le code calcule à la volée :
-           - Victoires = Lignes où la colonne 4 (Position) vaut 1
-           - ELO Actuel = Valeur de la colonne 6 de sa toute dernière ligne
-           - Moyenne Incidents = Somme de la colonne 9 divisée par le nb de courses
-        5. Tu injectes ces variables dans les balises <span> ci-dessous via leurs ID !
-        =============================================================================
-        -->
-        <section class="features" id="profil-pilote">
+        <!-- SECTION COMMUNAUTÉ DISCORD (LE PADDOCK) -->
+        <section class="discord-section" id="communaute">
             <div class="container">
-                <h2 class="section-title">Espace Pilote (Aperçu)</h2>
-                <p style="color: var(--racing-gray); margin-bottom: 2rem;">
-                    Dans un futur proche,je pourrais très bien ajouter cet "Espace Pilote" sur le site , en exploitant la data que ton Google Sheets accumule de semaine en semaine !
-                </p>
+                <h2 class="section-title">Le Paddock</h2>
 
-                <!-- En-tête du profil -->
-                <div style="background: linear-gradient(135deg, rgba(225, 6, 0, 0.15) 0%, rgba(21, 21, 30, 0.9) 100%); border: 1px solid rgba(225, 6, 0, 0.3); border-radius: 12px; padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
-                    
-                    <div style="display: flex; align-items: center; gap: 1.5rem;">
-                        <div style="width: 80px; height: 80px; background: var(--racing-dark); border: 2px solid var(--racing-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-                            🏁
-                        </div>
-                        <div>
-                            <!-- ID prêt pour l'injection JS future : id="driver-name" -->
-                            <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 0.2rem;">Parklive</h3>
-                            <span style="background: var(--gold); color: black; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 800; font-size: 0.8rem;">LICENCE PRO</span>
-                        </div>
+                <div class="discord-banner">
+                    <!-- COLONNE GAUCHE : texte + CTA -->
+                    <div class="discord-info">
+                        <h2>LE PADDOCK NE DORT JAMAIS</h2>
+                        <p>Le Simracing, ça se vit ensemble. Retrouvez nos pilotes en ligne tous les soirs pour discuter setups, débriefs de course, ou juste refaire le monde au paddock.</p>
+
+                        <ul class="discord-features">
+                            <li><span>🎙️</span> Salons vocaux ouverts H24</li>
+                            <li><span>🛠️</span> Partage de setups et télémétrie</li>
+                            <li><span>🏁</span> Briefings d'avant-course et inscriptions</li>
+                            <li><span>📅</span> Inscriptions aux events via le bot Sesh</li>
+                        </ul>
+
+                        <a href="https://discord.gg/dREZzRbHKG" target="_blank" rel="noopener" class="btn-discord-large">
+                            <svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true">
+                                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.1,46,96,53,91,65.69,84.69,65.69Z"/>
+                            </svg>
+                            Rejoindre le Serveur
+                        </a>
                     </div>
 
-                    <div style="display: flex; gap: 2rem; text-align: center;">
-                        <div>
-                            <span style="font-size: 0.9rem; color: var(--racing-gray); text-transform: uppercase;">iRating (ELO)</span>
-                            <!-- ID prêt pour l'injection JS future : id="driver-elo" -->
-                            <div style="font-size: 2.2rem; font-weight: 900; color: white;">2847</div>
-                        </div>
-                        <div>
-                            <span style="font-size: 0.9rem; color: var(--racing-gray); text-transform: uppercase;">Safety Rating</span>
-                            <!-- ID prêt pour l'injection JS future : id="driver-sr" -->
-                            <div style="font-size: 2.2rem; font-weight: 900; color: var(--success);">SR 4.8</div>
-                        </div>
-                    </div>
-                </div>
+                    <!-- COLONNE DROITE : widget custom -->
+                    <div class="discord-custom-widget" id="discordWidget">
 
-                <!-- Grille de Stats -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-                    <div class="stat-card" style="padding: 1.5rem;">
-                        <span style="font-size: 0.9rem; color: var(--racing-gray);">VICTOIRES</span>
-                        <!-- ID prêt pour l'injection JS future -->
-                        <div style="font-size: 1.8rem; font-weight: 900; color: var(--gold);">26.7%</div>
-                    </div>
-                    <div class="stat-card" style="padding: 1.5rem;">
-                        <span style="font-size: 0.9rem; color: var(--racing-gray);">PODIUMS</span>
-                        <!-- ID prêt pour l'injection JS future -->
-                        <div style="font-size: 1.8rem; font-weight: 900; color: white;">62.2%</div>
-                    </div>
-                    <div class="stat-card" style="padding: 1.5rem;">
-                        <span style="font-size: 0.9rem; color: var(--racing-gray);">INCIDENTS / COURSE</span>
-                        <!-- ID prêt pour l'injection JS future -->
-                        <div style="font-size: 1.8rem; font-weight: 900; color: var(--success);">0.2</div>
-                    </div>
-                </div>
+                        <!-- Header -->
+                        <div class="dcw-header">
+                            <div class="dcw-avatar">🏎️</div>
+                            <div>
+                                <div class="dcw-server-name">Turbo &amp; Co</div>
+                                <div class="dcw-counts">
+                                    <span class="dcw-count-item">
+                                        <span class="dcw-dot dcw-dot--online"></span>
+                                        <span id="dcwOnline">...</span> en ligne
+                                    </span>
+                                    <span class="dcw-count-item">
+                                        <span class="dcw-dot dcw-dot--members"></span>
+                                        <span id="dcwTotal">...</span> membres
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Historique Récent avec le système "Zero-Sum" -->
-                <div style="background: var(--racing-card); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden;">
-                    <div style="padding: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-weight: 700;">Historique des dernières courses</div>
-                    
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.95rem;">
-                            <thead>
-                                <tr style="background: rgba(255, 255, 255, 0.02); color: var(--racing-gray); font-size: 0.8rem; text-transform: uppercase;">
-                                    <th style="padding: 1rem;">Date</th>
-                                    <th style="padding: 1rem;">Course</th>
-                                    <th style="padding: 1rem;">Force Serveur (SOF)</th>
-                                    <th style="padding: 1rem;">Position</th>
-                                    <th style="padding: 1rem;">Variation ELO</th>
-                                    <th style="padding: 1rem;">Nouvel ELO</th>
-                                </tr>
-                            </thead>
-                            <!--
-                            =============================================================================
-                            EXPLICATION BOUCLE JS FUTURE :
-                            Une fois ton CSV de l'historique chargé, tu pourras faire un "forEach()"
-                            sur les 5 dernières lignes du pilote, et générer chaque <tr> dynamiquement
-                            en utilisant `innerHTML` (comme on le fait avec les cartes de courses !).
-                            =============================================================================
-                            -->
-                            <tbody id="driver-history-body">
-                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                                    <td style="padding: 1rem; color: var(--racing-gray);">15/03/2026</td>
-                                    <td style="padding: 1rem; font-weight: 700;">Spa 6H</td>
-                                    <td style="padding: 1rem; color: var(--gold);">2450</td>
-                                    <td style="padding: 1rem; font-weight: 900;">1er</td>
-                                    <td style="padding: 1rem; color: var(--success); font-weight: 700;">+32 ↗</td>
-                                    <td style="padding: 1rem; font-weight: 700;">2847</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-                                    <td style="padding: 1rem; color: var(--racing-gray);">08/03/2026</td>
-                                    <td style="padding: 1rem; font-weight: 700;">Monza Sprint</td>
-                                    <td style="padding: 1rem; color: var(--gold);">1950</td>
-                                    <td style="padding: 1rem; font-weight: 900;">2ème</td>
-                                    <td style="padding: 1rem; color: #EF4444; font-weight: 700;">-10 ↘</td>
-                                    <td style="padding: 1rem; font-weight: 700;">2815</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 1rem; color: var(--racing-gray);">01/03/2026</td>
-                                    <td style="padding: 1rem; font-weight: 700;">Nürburgring</td>
-                                    <td style="padding: 1rem; color: var(--gold);">2600</td>
-                                    <td style="padding: 1rem; font-weight: 900;">5ème</td>
-                                    <td style="padding: 1rem; color: var(--success); font-weight: 700;">+15 ↗</td>
-                                    <td style="padding: 1rem; font-weight: 700;">2825</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div style="padding: 1rem; text-align: center; font-size: 0.8rem; color: var(--racing-gray); font-style: italic;">
-                            Exemple de lecture SOF : À Monza, le SOF était faible (1950). En finissant 2ème, l'algorithme s'attendait à une victoire écrasante vu votre ELO (2825). Vous perdez donc 10 points malgré le podium !
+                        <!-- Body -->
+                        <div class="dcw-body">
+
+                            <!-- Prochain event Sesh (statique, mis à jour depuis Sheets) -->
+                            <div class="dcw-section-label">📅 Prochain event</div>
+                            <div class="dcw-next-event" id="dcwNextEvent">
+                                <div class="dcw-event-title" id="dcwEventTitle">Chargement...</div>
+                                <div class="dcw-event-meta" id="dcwEventMeta">...</div>
+                                <div class="dcw-event-attendees">
+                                    <span class="dcw-att-yes" id="dcwAttYes">✅ 0 inscrits</span>
+                                    <span class="dcw-att-maybe" id="dcwAttMaybe">🤔 0 peut-être</span>
+                                </div>
+                            </div>
+
+                            <!-- Salons vocaux dynamiques -->
+                            <div class="dcw-section-label">🔊 Salons vocaux</div>
+                            <div class="dcw-voice-list" id="dcwVoiceList">
+                                <!-- Injecté par JS -->
+                                <div class="dcw-voice-channel">
+                                    <span class="dcw-voice-icon">🔊</span>
+                                    <span style="color:var(--racing-gray);font-size:0.85rem;font-style:italic">Chargement...</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="dcw-footer">
+                            <a href="https://discord.gg/dREZzRbHKG" target="_blank" rel="noopener" class="dcw-join-btn">
+                                <svg width="18" height="18" viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true">
+                                    <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.1,46,96,53,91,65.69,84.69,65.69Z"/>
+                                </svg>
+                                Rejoindre le paddock
+                            </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -494,18 +679,18 @@
             <div class="container">
                 <h2 class="section-title">Hall of Fame</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 2rem;">Parce qu'on aime quand même la bagarre (propre). Classement basé sur l'assiduité et les événements.</p>
-                
+
                 <div class="sheet-tabs">
-                    <button class="sheet-tab-btn active" onclick="changeSheet('688402669', this)">🏠 Dashboard</button>
-                    <button class="sheet-tab-btn" onclick="changeSheet('431027575', this)">🏆 Classement Complet</button>
+                    <button class="sheet-tab-btn active" onclick="changeSheet('dashboard', this)">🏠 Dashboard</button>
+                    <button class="sheet-tab-btn" onclick="changeSheet('classement', this)">🏆 Classement Complet</button>
                 </div>
 
                 <div class="sheet-container">
                     <iframe 
                         id="ranking-iframe"
                         class="sheet-iframe"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pubhtml?gid=688402669&single=true&widget=false&headers=false&chrome=false&gridlines=false"
-                        title="Classement Turbo&Co" scrolling="no">
+                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pubhtml?gid=1140481306&single=true&widget=false&headers=false&chrome=false&gridlines=false"
+                        title="Dashboard Turbo&Co" scrolling="no">
                     </iframe>
                 </div> 
             </div> 
@@ -517,7 +702,7 @@
             <div class="footer-logo">TURBO<span>&CO</span></div>
             <p style="color: var(--racing-gray); margin-bottom: 2rem;">Communauté Simracing Le Mans Francophone</p>
             <nav class="social-links" aria-label="Réseaux sociaux">
-                <a href="https://discord.gg/ZJU3r4JP48" target="_blank">Discord</a>
+                <a href="https://discord.gg/dREZzRbHKG" target="_blank">Discord</a>
                 <a href="#" target="_blank">Twitch</a>
                 <a href="https://www.youtube.com/@Turbo-And-Co" target="_blank">Youtube</a>
             </nav>
@@ -527,10 +712,10 @@
 
     <script>
         // ----------------------------------------------------
-        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS - CSV 
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pub?gid=1162198900&single=true&output=csv';
+            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?output=csv';
 
             try {
                 const response = await fetch(urlCSV);
@@ -549,13 +734,13 @@
                             document.getElementById('time-' + id).innerText = col[3];   
                             document.getElementById('cat-' + id).innerText = col[4];    
                             document.getElementById('track-' + id).innerText = col[5];  
-                            
+
                             let imgUrl = col[6];
                             if(imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) imgUrl += "?raw=true";
-                            
+
                             const imgContainer = document.getElementById('img-' + id);
                             if(id === 'weekend_special') {
-                                imgContainer.style.backgroundImage = `linear-gradient(to right, rgba(10, 10, 15, 0.95) 0%, rgba(10, 10, 15, 0.4) 100%), url('${imgUrl}')`;
+                                imgContainer.style.backgroundImage = `linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), url('${imgUrl}')`;
                             } else {
                                 imgContainer.style.backgroundImage = `url('${imgUrl}')`;
                             }
@@ -563,8 +748,8 @@
                             const statusEl = document.getElementById('status-' + id);
                             const statusTxt = col[7];
                             statusEl.innerText = statusTxt;
-                            
-                            if(statusTxt.includes('🔴')) statusEl.style.color = '#F87171';
+
+                            if(statusTxt.includes('🔴')) statusEl.style.color = '#E31828';
                             else if(statusTxt.includes('🟠')) statusEl.style.color = '#FBBF24';
                             else if(statusTxt.includes('🟢')) statusEl.style.color = '#10B981';
 
@@ -582,16 +767,24 @@
         // ----------------------------------------------------
         // NAVIGATION DE L'IFRAME GOOGLE SHEETS
         // ----------------------------------------------------
-        function changeSheet(gid, btnElement) {
+        function changeSheet(type, btnElement) {
             const iframe = document.getElementById('ranking-iframe');
-            iframe.src = `https://docs.google.com/spreadsheets/d/e/2PACX-1vTjPeVXkxqKMScVNWrz3ieyxgnFfeaUMqIjhL-P3VDQK69NL2cbUsEVsVuMUXxtDw0htBsVg5v9IC23/pubhtml?gid=${gid}&single=true&widget=false&headers=false&chrome=false&gridlines=false`;
-            
+            let url = '';
+
+            if (type === 'dashboard') {
+                url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pubhtml?gid=1140481306&single=true&widget=false&headers=false&chrome=false&gridlines=false';
+            } else if (type === 'classement') {
+                url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pubhtml?gid=1140279944&single=true&widget=false&headers=false&chrome=false&gridlines=false';
+            }
+
+            iframe.src = url;
+
             document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
         }
 
         // ----------------------------------------------------
-        // GESTION DU MENU MOBILE ET ANIMATIONS
+        // GESTION DU MENU MOBILE
         // ----------------------------------------------------
         const nav = document.getElementById('navLinks');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -625,22 +818,22 @@
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
                 timerElement.innerHTML = `
-                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 600; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: inline-flex; align-items: center; gap: 8px;">
+                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 700; background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); display: inline-flex; align-items: center; gap: 8px; font-style: italic;">
                         ⏱️ Départ dans 
-                        <span style="color: var(--gold); font-family: monospace; font-size: 1.05rem; letter-spacing: 0.5px;">
+                        <span style="color: var(--silver); font-family: monospace; font-size: 1.05rem; letter-spacing: 0.5px;">
                             ${days}j ${hours}h ${minutes}m ${seconds}s
                         </span>
                     </span>
                 `;
             } else if (now >= raceDate && now <= raceEnd) {
                 timerElement.innerHTML = `
-                    <span style="color: var(--success); font-size: 0.9rem; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--success); display: inline-flex; align-items: center; gap: 8px;">
+                    <span style="color: var(--success); font-size: 0.9rem; font-weight: 700; background: rgba(16, 185, 129, 0.15); padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid var(--success); display: inline-flex; align-items: center; gap: 8px; font-style: italic;">
                         🟢 Course en cours !
                     </span>
                 `;
             } else {
                 timerElement.innerHTML = `
-                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 700; background: rgba(255, 255, 255, 0.05); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); display: inline-flex; align-items: center; gap: 8px;">
+                    <span style="color: var(--racing-gray); font-size: 0.9rem; font-weight: 700; background: rgba(255, 255, 255, 0.05); padding: 0.4rem 0.8rem; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); display: inline-flex; align-items: center; gap: 8px; font-style: italic;">
                         🏁 Terminée
                     </span>
                 `;
@@ -676,6 +869,158 @@
                 if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
+        // ────────────────────────────────────────────────────
+        // DISCORD — COMPTEUR MEMBRES + WIDGET CUSTOM
+        // ────────────────────────────────────────────────────
+
+        const DISCORD_INVITE  = 'dREZzRbHKG';         // ton code d'invitation
+        const DISCORD_GUILD   = '1166032605062373477'; // ton Guild ID (dans l'URL Discord)
+
+        // ① Compteur membres en temps réel (API invite publique)
+        async function fetchDiscordCounts() {
+            try {
+                const res  = await fetch(`https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`);
+                if (!res.ok) return;
+                const data = await res.json();
+
+                const online = data.approximate_presence_count ?? '?';
+                const total  = data.approximate_member_count  ?? '?';
+
+                // Hero stat card
+                const heroEl = document.getElementById('heroOnlineCount');
+                if (heroEl) heroEl.textContent = online;
+
+                // Widget header
+                const dcwO = document.getElementById('dcwOnline');
+                const dcwT = document.getElementById('dcwTotal');
+                if (dcwO) dcwO.textContent = online;
+                if (dcwT) dcwT.textContent = total;
+
+            } catch (e) {
+                console.warn('Discord counts unavailable:', e);
+            }
+        }
+
+        // ② Salons vocaux dynamiques (API widget — nécessite widget activé dans Paramètres > Widget)
+        async function fetchDiscordVoice() {
+            const list = document.getElementById('dcwVoiceList');
+            if (!list) return;
+
+            try {
+                const res  = await fetch(`https://discord.com/api/guilds/${DISCORD_GUILD}/widget.json`);
+                if (!res.ok) throw new Error('Widget désactivé');
+                const data = await res.json();
+
+                // Canaux vocaux (type 2)
+                const voiceChannels = data.channels || [];
+
+                if (voiceChannels.length === 0) {
+                    list.innerHTML = `<div class="dcw-voice-channel">
+                        <span class="dcw-voice-icon">🔇</span>
+                        <span style="color:var(--racing-gray);font-size:0.85rem">Aucun salon vocal configuré</span>
+                    </div>`;
+                    return;
+                }
+
+                // Membres dans les vocaux
+                const members = data.members || [];
+
+                list.innerHTML = voiceChannels.map(ch => {
+                    // Membres dans ce channel
+                    const inChannel = members.filter(m => m.channel_id === ch.id);
+                    const hasUsers  = inChannel.length > 0;
+
+                    const usersHTML = hasUsers
+                        ? `<div class="dcw-voice-users">
+                            ${inChannel.slice(0, 3).map(m =>
+                                `<div class="dcw-user-avatar" title="${m.username}">
+                                    ${m.username.slice(0,1).toUpperCase()}
+                                </div>`
+                            ).join('')}
+                            ${inChannel.length > 3
+                                ? `<span class="dcw-user-count-badge">+${inChannel.length - 3}</span>`
+                                : ''}
+                          </div>`
+                        : '';
+
+                    return `<div class="dcw-voice-channel ${hasUsers ? 'has-users' : ''}">
+                        <span class="dcw-voice-icon">🔊</span>
+                        <span>${ch.name}</span>
+                        ${hasUsers
+                            ? `<span class="dcw-user-count-badge" style="margin-left:0.4rem">
+                                ${inChannel.length} en vocal
+                               </span>`
+                            : ''}
+                        ${usersHTML}
+                    </div>`;
+                }).join('');
+
+            } catch (e) {
+                // Widget désactivé → fallback gracieux avec canaux statiques connus
+                list.innerHTML = `
+                    <div class="dcw-voice-channel">
+                        <span class="dcw-voice-icon">🔊</span>
+                        <span>open-1</span>
+                    </div>
+                    <div class="dcw-voice-channel">
+                        <span class="dcw-voice-icon">🔊</span>
+                        <span>open-2</span>
+                    </div>
+                    <div class="dcw-voice-channel">
+                        <span class="dcw-voice-icon">🔊</span>
+                        <span>open-3</span>
+                    </div>
+                    <div style="font-size:0.75rem;color:var(--racing-gray);padding:0.3rem 0.8rem;font-style:italic">
+                        Active le widget dans Paramètres Discord pour voir qui est en vocal.
+                    </div>`;
+                console.warn('Discord widget JSON unavailable (widget disabled?):', e);
+            }
+        }
+
+        // ③ Prochain event — lu depuis l'onglet INSCRIPTION du Sheets
+        //    (titre = col[2], horaires = col[3], statut = col[7])
+        //    On recycle fetchInscriptions() et on injecte dans le widget aussi
+        function updateWidgetEvent() {
+            const titleEl  = document.getElementById('title-weekend_special');
+            const timeEl   = document.getElementById('time-weekend_special');
+            const statusEl = document.getElementById('status-weekend_special');
+
+            if (!titleEl) return;
+
+            const wcTitle  = document.getElementById('dcwEventTitle');
+            const wcMeta   = document.getElementById('dcwEventMeta');
+            const wcStatus = document.getElementById('dcwAttYes');
+
+            if (wcTitle && titleEl.textContent && titleEl.textContent !== 'Chargement de l\'événement...') {
+                wcTitle.textContent = titleEl.textContent;
+            }
+            if (wcMeta && timeEl) {
+                wcMeta.textContent = '🗓️ ' + (timeEl.textContent || '...');
+            }
+            if (wcStatus && statusEl) {
+                wcStatus.textContent = statusEl.textContent;
+                // Couleur du statut
+                if (statusEl.textContent.includes('🟢')) wcStatus.style.color = 'var(--success)';
+                else if (statusEl.textContent.includes('🟠')) wcStatus.style.color = 'var(--gold)';
+                else if (statusEl.textContent.includes('🔴')) wcStatus.style.color = 'var(--racing-red)';
+            }
+
+            // Masque le champ "peut-être" si pas utile
+            const attMaybe = document.getElementById('dcwAttMaybe');
+            if (attMaybe) attMaybe.style.display = 'none';
+        }
+
+        // Init + rafraîchissement toutes les 5 minutes
+        fetchDiscordCounts();
+        fetchDiscordVoice();
+        // Synchro widget après chargement Sheets (délai pour laisser fetchInscriptions finir)
+        setTimeout(updateWidgetEvent, 2500);
+
+        setInterval(() => {
+            fetchDiscordCounts();
+            fetchDiscordVoice();
+        }, 5 * 60 * 1000);
+
     </script>
 </body>
 </html>
