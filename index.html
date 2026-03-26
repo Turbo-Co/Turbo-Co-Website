@@ -14,9 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Titillium+Web:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================================================
-           VARIABLES DE COULEURS (THEME K-NETTE)
-        ============================================================ */
         :root {
             --racing-red: #E31828; 
             --racing-red-dark: #A61118; 
@@ -39,7 +36,6 @@
             line-height: 1.6; 
         }
 
-        /* Police massive (Montserrat) pour tous les éléments d'impact */
         h1, h2, h3, .logo, .btn-action, .btn-discord, .hero-badge, .race-tag, .map-title, .sheet-tab-btn, .dcw-event-title, .dcw-server-name, .dcw-join-btn {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -47,9 +43,6 @@
             text-transform: uppercase;
         }
 
-        /* ============================================================
-           FOND DU SITE (DAMIER ET LIGNES)
-        ============================================================ */
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 8px;
             background-image: linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF), linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF);
@@ -68,9 +61,6 @@
             top: -200px; right: -300px; z-index: -1; pointer-events: none;
         }
 
-        /* ============================================================
-           HEADER ET NAVIGATION
-        ============================================================ */
         header { position: fixed; top: 8px; width: 100%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid rgba(255, 255, 255, 0.05); z-index: 1000; padding: 1rem 0; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         nav { display: flex; justify-content: space-between; align-items: center; }
@@ -82,7 +72,6 @@
         .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-style: italic; font-size: 1rem; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--silver); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
-        /* Boutons */
         .btn-discord { background: var(--discord); color: white; padding: 0.6rem 1.5rem; border-radius: 4px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent; }
         .btn-discord:hover { background: transparent; border-color: var(--discord); }
 
@@ -94,10 +83,6 @@
         }
         .btn-action:hover { background: white; color: var(--racing-red-dark); border-color: var(--racing-red); transform: translateY(-3px); }
         
-        .btn-card { width: 100%; margin-top: 1.5rem; background: var(--racing-card); border-color: rgba(255,255,255,0.2); box-shadow: none; color: white;}
-        .btn-card:hover { background: white; color: var(--racing-dark); }
-
-        /* Hamburger Menu Mobile */
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; z-index: 1001; }
         .hamburger span { width: 25px; height: 3px; background: white; transition: 0.3s ease-in-out; border-radius: 2px; }
         .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -111,9 +96,6 @@
             .btn-discord { display: none; }
         }
 
-        /* ============================================================
-           HERO SECTION & STATS
-        ============================================================ */
         .hero { margin-top: 120px; padding: 4rem 0; text-align: center; }
         .hero-badge { 
             background: var(--racing-card); border: 2px solid rgba(255,255,255,0.1); 
@@ -143,7 +125,6 @@
         .stat-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
         .stat-label { font-size: 1rem; color: var(--silver); font-weight: 900; font-style: italic; text-transform: uppercase;}
 
-        /* Main Event (Weekend Special) en haut */
         .next-race { 
             background: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), #131928; 
             border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5rem; margin: 3rem 0; 
@@ -158,28 +139,44 @@
         #raceTimer span { display: inline-flex; align-items: center; gap: 8px; }
 
         /* ============================================================
-           CARTES DES OPENS RÉGULIERS
+           ÉVÉNEMENTS DE LA SEMAINE (CARTES CORRIGÉES)
         ============================================================ */
         .events-section { padding: 2rem 0 4rem; }
         .section-title { font-size: 2.5rem; margin-bottom: 2rem; display: inline-block; position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 60px; height: 4px; background: var(--racing-red); }
         
-        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-        .event-card { background: var(--racing-card); border-radius: 8px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; align-items: stretch; }
+        
+        .event-card { 
+            background: var(--racing-card); border-radius: 8px; overflow: hidden; 
+            border: 2px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; 
+            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column; height: 100%; /* Permet aux cartes de s'étirer */
+        }
         .event-card:hover { transform: translateY(-5px); border-color: var(--silver); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
-        .event-img-container { height: 140px; background-size: cover; background-position: center; position: relative; border-bottom: 4px solid var(--racing-red); background-color: #0A0A0F;}
+        
+        .event-img-container { 
+            height: 140px; flex-shrink: 0; /* Bloque la hauteur de l'image */
+            background-size: cover; background-position: center; position: relative; 
+            border-bottom: 4px solid var(--racing-red); background-color: #0A0A0F;
+        }
         .event-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(11,15,25,0.9), transparent); }
         .event-day-badge { position: absolute; top: 10px; right: 10px; background: white; color: black; padding: 0.3rem 1rem; border-radius: 2px; font-size: 0.85rem; z-index: 2; transform: skewX(-10deg);}
         
-        .event-body { padding: 1.5rem; display: flex; flex-direction: column; height: 100%;}
+        .event-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
         .event-title-card { font-size: 1.5rem; color: white; margin-bottom: 1.2rem; }
-        .event-info-list { display: flex; flex-direction: column; gap: 0.8rem; flex-grow: 1; }
+        .event-info-list { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
         .event-info-row { display: flex; align-items: center; gap: 0.8rem; color: var(--racing-gray); font-size: 0.95rem; font-weight: 600;}
         .event-icon { width: 20px; text-align: center; opacity: 0.9; }
 
-        /* ============================================================
-           SECTION CHARTE / ESPRIT
-        ============================================================ */
+        /* Le bouton coincé en bas de la carte proprement */
+        .btn-card { 
+            width: 100%; margin-top: auto; 
+            background: var(--racing-card); border-color: rgba(255,255,255,0.2); box-shadow: none; color: white;
+        }
+        .btn-card:hover { background: white; color: var(--racing-dark); }
+
+        /* Charte / Règles */
         .features { padding: 4rem 0; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .feature-card { background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem; transition: all 0.3s; }
@@ -188,7 +185,6 @@
         .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: white;}
         .feature-card p { color: var(--racing-gray); font-size: 0.95rem; }
 
-        /* Graphique Sparkline ELO (CSS) */
         .elo-sparkline { display: flex; align-items: flex-end; height: 50px; gap: 4px; margin-top: 1.5rem; padding-bottom: 5px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative; }
         .spark-bar { flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 2px 2px 0 0; transition: height 1s ease; }
         .spark-bar:nth-child(1) { height: 20%; }
@@ -199,12 +195,8 @@
         .spark-bar:nth-child(6) { height: 90%; background: var(--racing-red); box-shadow: 0 0 10px rgba(227, 24, 40, 0.5); }
         .elo-trend { position: absolute; top: -25px; right: 0; color: var(--silver); font-weight: 900; font-style: italic; font-size: 0.9rem; }
 
-        /* ============================================================
-           SECTION DISCORD — LE PADDOCK
-        ============================================================ */
+        /* SECTION DISCORD — LE PADDOCK */
         .discord-section { padding: 4rem 0; }
-
-        /* Compteur dynamique sous l'icône micro */
         .discord-live-count {
             display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
             background: rgba(88, 101, 242, 0.12); border: 1px solid rgba(88, 101, 242, 0.3);
@@ -239,7 +231,6 @@
         }
         .btn-discord-large:hover { background: transparent; border-color: var(--discord); color: white; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3); }
 
-        /* WIDGET CUSTOM DISCORD (Remplace l'Iframe par notre propre HTML) */
         .discord-custom-widget {
             background: #1e2233; border-radius: 8px; border: 1px solid rgba(88, 101, 242, 0.2);
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -258,46 +249,24 @@
         .dcw-body { padding: 1rem 1.2rem; }
         .dcw-section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--racing-gray); font-family: 'Titillium Web', sans-serif; font-style: normal; margin-bottom: 0.6rem; margin-top: 0.5rem; }
         
-        /* -----------------------------------
-           STYLE DU FAUX WIDGET SESH
-        ----------------------------------- */
-        .dcw-next-event {
-            background: rgba(227, 24, 40, 0.06);
-            border: 1px solid rgba(227, 24, 40, 0.2);
-            border-radius: 6px; padding: 0.9rem 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .dcw-event-title {
-            font-family: 'Montserrat', sans-serif; font-weight: 900;
-            font-style: italic; font-size: 1rem; color: white; margin-bottom: 0.3rem;
-        }
+        .dcw-next-event { background: rgba(227, 24, 40, 0.06); border: 1px solid rgba(227, 24, 40, 0.2); border-radius: 6px; padding: 0.9rem 1rem; margin-bottom: 1.5rem; }
+        .dcw-event-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic; font-size: 1rem; color: white; margin-bottom: 0.3rem; }
         .dcw-event-meta { font-size: 0.82rem; color: var(--racing-gray); font-style: normal; font-family: 'Titillium Web', sans-serif; }
         .dcw-event-attendees { display: flex; gap: 1rem; margin-top: 0.6rem; font-size: 0.8rem; font-family: 'Titillium Web', sans-serif; font-weight: 700;}
 
-        /* Salons vocaux Discord */
         .dcw-voice-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-        .dcw-voice-channel {
-            background: rgba(255,255,255,0.03); border-radius: 4px; padding: 0.6rem 0.8rem;
-            display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; font-weight: 600; color: white;
-            font-family: 'Titillium Web', sans-serif; font-style: normal; transition: background 0.2s;
-        }
+        .dcw-voice-channel { background: rgba(255,255,255,0.03); border-radius: 4px; padding: 0.6rem 0.8rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; font-weight: 600; color: white; font-family: 'Titillium Web', sans-serif; font-style: normal; transition: background 0.2s; }
         .dcw-voice-channel:hover { background: rgba(255,255,255,0.06); }
         .dcw-voice-icon { font-size: 1rem; opacity: 0.7; }
         
-        .new-badge {
-            background: var(--discord); color: white; font-size: 0.65rem; padding: 0.15rem 0.4rem;
-            border-radius: 4px; font-weight: 800; font-family: 'Titillium Web', sans-serif; font-style: normal;
-            animation: blink-badge 2s infinite; letter-spacing: 0.5px; text-transform: uppercase;
-        }
+        .new-badge { background: var(--discord); color: white; font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: 800; font-family: 'Titillium Web', sans-serif; font-style: normal; animation: blink-badge 2s infinite; letter-spacing: 0.5px; text-transform: uppercase; }
         @keyframes blink-badge { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
         .dcw-footer { padding: 1rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; }
         .dcw-join-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--discord); color: white; padding: 0.65rem 1.5rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s; border: 2px solid transparent; width: 100%; }
         .dcw-join-btn:hover { background: transparent; border-color: var(--discord); }
 
-        /* ============================================================
-           CLASSEMENT IFRAME (TABLEAUX GOOGLE SHEETS)
-        ============================================================ */
+        /* Classement & Iframe */
         .classement-section { padding: 4rem 0; background: rgba(0, 0, 0, 0.3);}
         .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
         .sheet-tab-btn { background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.1); color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; }
@@ -319,7 +288,6 @@
     <div class="bg-grid"></div>
     <div class="glow-red"></div>
 
-    <!-- HEADER / NAVIGATION -->
     <header>
         <div class="container">
             <nav role="navigation">
@@ -340,7 +308,6 @@
     </header>
 
     <main>
-        <!-- HERO (ACCUEIL) -->
         <section class="hero" id="accueil">
             <div class="container">
                 <div class="hero-badge"><span><span class="live-dot"></span> Serveur Discord Ouvert</span></div>
@@ -366,7 +333,6 @@
                     </article>
                 </div>
 
-                <!-- MAIN EVENT (WEEKEND SPECIAL) EN HAUT -->
                 <div class="next-race" id="img-weekend_special">
                     <div class="race-header">
                         <span class="race-tag"><span>🏆 L'Événement du Week-end</span></span>
@@ -382,21 +348,19 @@
                     </div>
 
                     <div style="margin-top: 2rem;">
-                        <!-- Le lien sera injecté par le JS -->
-                        <a id="link-weekend_special" href="#" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
+                        <a id="link-weekend_special" href="https://discord.gg/dREZzRbHKG" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROGRAMME DES OPENS -->
         <section class="events-section" id="programme">
             <div class="container">
                 <h2 class="section-title">Nos Opens Réguliers</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 3rem;">Des courses sans prise de tête les soirs de semaine pour rouler ensemble, tester des setups et s'améliorer.</p>
 
                 <div class="events-grid">
-                    <!-- CARTE LUNDI -->
+                    <!-- LUNDI -->
                     <article class="event-card" id="card-monday_open">
                         <div id="img-monday_open" class="event-img-container">
                             <span id="day-monday_open" class="event-day-badge">LUNDI</span>
@@ -412,11 +376,11 @@
                                     <span id="status-monday_open" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-monday_open" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-monday_open" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- CARTE MERCREDI -->
+                    <!-- MERCREDI -->
                     <article class="event-card" id="card-wednesday_sprint">
                         <div id="img-wednesday_sprint" class="event-img-container">
                             <span id="day-wednesday_sprint" class="event-day-badge">MERCREDI</span>
@@ -432,11 +396,11 @@
                                     <span id="status-wednesday_sprint" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-wednesday_sprint" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-wednesday_sprint" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- CARTE VENDREDI -->
+                    <!-- VENDREDI -->
                     <article class="event-card" id="card-friday_fun">
                         <div id="img-friday_fun" class="event-img-container">
                             <span id="day-friday_fun" class="event-day-badge">VENDREDI</span>
@@ -452,14 +416,13 @@
                                     <span id="status-friday_fun" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-friday_fun" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-friday_fun" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- NOTRE ESPRIT / CHARTE -->
         <section class="features" id="charte">
             <div class="container">
                 <h2 class="section-title">L'Esprit Turbo&Co</h2>
@@ -521,7 +484,7 @@
                         </a>
                     </div>
 
-                    <!-- WIDGET CUSTOM DISCORD (Remplace l'Iframe par le design HTML/CSS) -->
+                    <!-- WIDGET CUSTOM DISCORD -->
                     <div class="discord-custom-widget">
                         <div class="dcw-header">
                             <div class="dcw-avatar">🏎️</div>
@@ -541,18 +504,12 @@
                         </div>
 
                         <div class="dcw-body">
-                            <!-- ==========================================
-                                 FAUX WIDGET SESH : PROCHAIN EVENT
-                                 Généré par les données du Sheets !
-                            =========================================== -->
                             <div class="dcw-section-label">📅 PROCHAIN EVENT</div>
                             <div class="dcw-next-event" id="dcwNextEvent">
-                                <!-- ID JS pour injection dynamique -->
                                 <div class="dcw-event-title" id="dcwEventTitle">Chargement...</div>
                                 <div class="dcw-event-meta" id="dcwEventMeta">...</div>
                                 <div class="dcw-event-attendees">
                                     <span id="dcwAttYes">✅ En attente...</span>
-                                    <span style="color: var(--gold);">🤔 0 peut-être</span>
                                 </div>
                             </div>
 
@@ -593,7 +550,7 @@
             </div>
         </section>
 
-        <!-- CLASSEMENT & BOUTONS IFRAME -->
+        <!-- CLASSEMENT & IFRAME -->
         <section class="classement-section" id="classement">
             <div class="container">
                 <h2 class="section-title">Hall of Fame</h2>
@@ -631,84 +588,82 @@
 
     <script>
         // ----------------------------------------------------
-        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS - CSV 
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            // Lien CSV de la feuille "INSCRIPTIONS"
             const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?gid=1162198900&single=true&output=csv';
 
             try {
                 const response = await fetch(urlCSV);
                 const csvData = await response.text();
                 
-                // Séparation des lignes proprement
-                const lignes = csvData.split('\n').slice(1); 
+                // Utilisation d'une Regex robuste pour séparer les lignes (gère les formats Windows et Mac)
+                const lignes = csvData.split(/\r?\n/).slice(1); 
 
                 lignes.forEach(ligne => {
-                    // Regex avancée pour ne pas couper au milieu des mots s'il y a des virgules
                     const col = ligne.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
 
                     if (col.length >= 9) {
-                        const id = col[0]; // Ex: "weekend_special", "monday_open"
+                        const id = col[0]; 
 
-                        // Si l'ID existe sur la page HTML, on l'alimente
                         if (document.getElementById('title-' + id)) {
+                            // Valeurs de repli ultra robustes si la case est totalement vide
+                            const dayText = col[1] && col[1] !== "" ? col[1] : "TBA";
+                            document.getElementById('day-' + id).innerText = dayText;
                             
-                            // TEXTES (Cartes)
-                            document.getElementById('day-' + id).innerText = col[1] || "TBA";    
-                            document.getElementById('title-' + id).innerText = col[2] || "Événement à venir";  
-                            document.getElementById('time-' + id).innerText = col[3] || "Horaires non définis";   
-                            document.getElementById('cat-' + id).innerText = col[4] || "-";    
-                            document.getElementById('track-' + id).innerText = col[5] || "-";  
+                            const titleText = col[2] && col[2] !== "" ? col[2] : "Événement à venir";
+                            document.getElementById('title-' + id).innerText = titleText;
+                            
+                            const timeText = col[3] && col[3] !== "" ? col[3] : "Horaires non définis";
+                            document.getElementById('time-' + id).innerText = timeText;
+                            
+                            const catText = col[4] && col[4] !== "" ? col[4] : "-";
+                            document.getElementById('cat-' + id).innerText = catText;
+                            
+                            const trackText = col[5] && col[5] !== "" ? col[5] : "-";
+                            document.getElementById('track-' + id).innerText = trackText;  
 
-                            // GESTION IMAGE & GITHUB RAW
-                            let imgUrl = col[6] ? col[6].trim() : "";
+                            let imgUrl = col[6] ? col[6] : "";
+                            
                             if (imgUrl && imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) {
                                 imgUrl += "?raw=true";
                             }
+                            
                             if (!imgUrl || imgUrl === "?raw=true" || imgUrl === "") {
                                 imgUrl = "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop";
                             }
 
                             const imgContainer = document.getElementById('img-' + id);
-                            
-                            // --- CAS PARTICULIER : L'ÉVÉNEMENT DU WEEK-END ---
                             if(id === 'weekend_special') {
-                                // 1. L'image de la grande bannière en haut
                                 imgContainer.style.backgroundImage = `linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), url('${imgUrl}')`;
                                 
-                                // 2. COMMENTAIRE EXPLICATIF : Mise à jour du "Faux" Widget Sesh en bas de page !
-                                // Le script recycle la donnée du weekend_special pour alimenter le Paddock Discord
+                                // INJECTION DANS LE WIDGET DISCORD
                                 const dcwTitle = document.getElementById('dcwEventTitle');
                                 const dcwMeta = document.getElementById('dcwEventMeta');
                                 const dcwAttYes = document.getElementById('dcwAttYes');
                                 
-                                if(dcwTitle) dcwTitle.innerText = col[2] || "Événement à venir";
-                                if(dcwMeta) dcwMeta.innerText = '🗓️ ' + (col[3] || "Horaires non définis");
+                                if(dcwTitle) dcwTitle.innerText = titleText;
+                                if(dcwMeta) dcwMeta.innerText = '🗓️ ' + timeText;
                                 if(dcwAttYes) {
-                                    const statusTxtSesh = col[7] || "En attente";
+                                    const statusTxtSesh = col[7] && col[7] !== "" ? col[7] : "En attente";
                                     dcwAttYes.innerText = statusTxtSesh;
                                     
-                                    // Application des couleurs "Feu tricolore"
                                     if(statusTxtSesh.includes('🔴')) dcwAttYes.style.color = '#E31828';
                                     else if(statusTxtSesh.includes('🟠')) dcwAttYes.style.color = '#FBBF24';
                                     else if(statusTxtSesh.includes('🟢')) dcwAttYes.style.color = '#10B981';
                                 }
                             } else {
-                                // Cartes Lundi, Mercredi, Vendredi (Classique)
                                 imgContainer.style.backgroundImage = `url('${imgUrl}')`;
                             }
 
-                            // STATUTS & COULEURS (Pour toutes les cartes en haut)
                             const statusEl = document.getElementById('status-' + id);
-                            const statusTxt = col[7] || "En attente";
+                            const statusTxt = col[7] && col[7] !== "" ? col[7] : "En attente";
                             statusEl.innerText = statusTxt;
 
                             if(statusTxt.includes('🔴')) statusEl.style.color = '#E31828';
                             else if(statusTxt.includes('🟠')) statusEl.style.color = '#FBBF24';
                             else if(statusTxt.includes('🟢')) statusEl.style.color = '#10B981';
 
-                            // LIEN BOUTON DISCORD
                             document.getElementById('link-' + id).href = col[8] || "https://discord.gg/dREZzRbHKG";
                         }
                     }
@@ -718,17 +673,15 @@
             }
         }
 
-        // Lancer la lecture des données Google Sheets
         fetchInscriptions();
 
         // ----------------------------------------------------
-        // NAVIGATION DE L'IFRAME (CLASSEMENT / DASHBOARD)
+        // NAVIGATION DE L'IFRAME GOOGLE SHEETS
         // ----------------------------------------------------
         function changeSheet(type, btnElement) {
             const iframe = document.getElementById('ranking-iframe');
             let url = '';
 
-            // Les GIDs (ID d'onglets) sont placés dynamiquement
             if (type === 'dashboard') {
                 url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pubhtml?gid=1140481306&single=true&widget=false&headers=false&chrome=false&gridlines=false';
             } else if (type === 'classement') {
@@ -737,7 +690,6 @@
 
             iframe.src = url;
 
-            // Retrait de la classe active sur tous les boutons, puis ajout sur le bouton cliqué
             document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
         }
@@ -749,7 +701,6 @@
         
         async function fetchDiscordCounts() {
             try {
-                // Interrogation silencieuse de l'API d'invitation Discord
                 const res  = await fetch(`https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`);
                 if (!res.ok) return;
                 const data = await res.json();
@@ -757,7 +708,6 @@
                 const online = data.approximate_presence_count ?? '?';
                 const total  = data.approximate_member_count  ?? '?';
 
-                // Injection des chiffres dans la carte Stats et le Paddock
                 const heroEl = document.getElementById('heroOnlineCount');
                 if (heroEl) heroEl.textContent = online;
 
@@ -770,9 +720,8 @@
                 console.warn('Discord counts unavailable:', e);
             }
         }
-        
         fetchDiscordCounts();
-        setInterval(fetchDiscordCounts, 5 * 60 * 1000); // Actualisation toutes les 5 minutes
+        setInterval(fetchDiscordCounts, 5 * 60 * 1000);
 
         // ----------------------------------------------------
         // GESTION DU MENU MOBILE
@@ -793,7 +742,7 @@
         });
 
         // ----------------------------------------------------
-        // TIMER DE L'EVENT WEEK-END 
+        // TIMER DISCRET 
         // ----------------------------------------------------
         function updateTimer() {
             const raceDate = new Date('2026-03-28T21:00:00');
@@ -833,9 +782,7 @@
 
         setInterval(updateTimer, 1000); updateTimer();
 
-        // ----------------------------------------------------
-        // ANIMATIONS FLUIDES AU SCROLL
-        // ----------------------------------------------------
+        // Scroll Animations
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
