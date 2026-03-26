@@ -11,12 +11,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Chargement de Montserrat (Titres massifs) et Titillium Web (Textes) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,900;1,700;1,900&family=Titillium+Web:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
 
     <style>
+        /* ============================================================
+           VARIABLES DE COULEURS (THEME K-NETTE)
+        ============================================================ */
         :root {
-            /* Palette K-NETTE MOTORSHPORT */
             --racing-red: #E31828; 
             --racing-red-dark: #A61118; 
             --racing-dark: #0B0F19; 
@@ -26,7 +27,6 @@
             --gold: #FFD700;
             --success: #10B981;
             --discord: #5865F2;
-            --glass: rgba(19, 25, 40, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,26 +39,21 @@
             line-height: 1.6; 
         }
 
-        /* 폰 Application de la police massive façon K-NETTE */
-        h1, h2, h3, .logo, .btn-action, .btn-discord, .hero-badge, .race-tag, .map-title, .sheet-tab-btn {
+        /* Police massive (Montserrat) pour tous les éléments d'impact */
+        h1, h2, h3, .logo, .btn-action, .btn-discord, .hero-badge, .race-tag, .map-title, .sheet-tab-btn, .dcw-event-title, .dcw-server-name, .dcw-join-btn {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             font-style: italic;
             text-transform: uppercase;
         }
 
-        /* Damier de course (Checkerboard) tout en haut du site */
+        /* ============================================================
+           FOND DU SITE (DAMIER ET LIGNES)
+        ============================================================ */
         body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 8px;
-            background-image: 
-                linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF),
-                linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF);
-            background-color: #000;
-            background-position: 0 0, 10px 10px;
-            background-size: 20px 20px;
-            z-index: 9999;
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 8px;
+            background-image: linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF), linear-gradient(45deg, #FFF 25%, transparent 25%, transparent 75%, #FFF 75%, #FFF);
+            background-color: #000; background-position: 0 0, 10px 10px; background-size: 20px 20px; z-index: 9999;
         }
 
         .bg-grid {
@@ -67,16 +62,15 @@
             background-size: 60px 60px; z-index: -2;
         }
 
-        @media (prefers-reduced-motion: no-preference) { .bg-grid { animation: gridMove 60s linear infinite; } }
-        @keyframes gridMove { 0% { transform: translate(0, 0); } 100% { transform: translate(60px, 60px); } }
-
         .glow-red {
             position: fixed; width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(227, 24, 40, 0.08) 0%, transparent 60%);
             top: -200px; right: -300px; z-index: -1; pointer-events: none;
         }
 
-        /* Header */
+        /* ============================================================
+           HEADER ET NAVIGATION
+        ============================================================ */
         header { position: fixed; top: 8px; width: 100%; background: rgba(11, 15, 25, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid rgba(255, 255, 255, 0.05); z-index: 1000; padding: 1rem 0; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         nav { display: flex; justify-content: space-between; align-items: center; }
@@ -85,9 +79,10 @@
         .logo span { color: var(--racing-red); }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-style: italic; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-style: italic; font-size: 1rem; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--silver); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
 
+        /* Boutons */
         .btn-discord { background: var(--discord); color: white; padding: 0.6rem 1.5rem; border-radius: 4px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; border: 2px solid transparent; }
         .btn-discord:hover { background: transparent; border-color: var(--discord); }
 
@@ -102,7 +97,7 @@
         .btn-card { width: 100%; margin-top: 1.5rem; background: var(--racing-card); border-color: rgba(255,255,255,0.2); box-shadow: none; color: white;}
         .btn-card:hover { background: white; color: var(--racing-dark); }
 
-        /* Menu Mobile */
+        /* Hamburger Menu Mobile */
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; z-index: 1001; }
         .hamburger span { width: 25px; height: 3px; background: white; transition: 0.3s ease-in-out; border-radius: 2px; }
         .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -116,16 +111,16 @@
             .btn-discord { display: none; }
         }
 
-        /* Hero Section */
+        /* ============================================================
+           HERO SECTION & STATS
+        ============================================================ */
         .hero { margin-top: 120px; padding: 4rem 0; text-align: center; }
-        
         .hero-badge { 
             background: var(--racing-card); border: 2px solid rgba(255,255,255,0.1); 
             padding: 0.6rem 1.5rem; border-radius: 4px; font-size: 0.9rem; 
             color: var(--silver); margin-bottom: 2rem; transform: skewX(-10deg);
         }
         .hero-badge span { transform: skewX(10deg); display: inline-flex; align-items: center; gap: 8px;} 
-        
         .live-dot { width: 10px; height: 10px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
@@ -139,12 +134,16 @@
         .hero p { font-size: 1.2rem; color: var(--racing-gray); max-width: 650px; margin: 0 auto 3rem; }
 
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .stat-card { background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .stat-card { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
         .stat-card:hover { border-color: var(--silver); transform: translateY(-5px); }
         .stat-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
-        .stat-label { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: var(--silver); font-weight: 900; font-style: italic; text-transform: uppercase;}
+        .stat-label { font-size: 1rem; color: var(--silver); font-weight: 900; font-style: italic; text-transform: uppercase;}
 
-        /* Main Event (Weekend Special) */
+        /* Main Event (Weekend Special) en haut */
         .next-race { 
             background: linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), #131928; 
             border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5rem; margin: 3rem 0; 
@@ -152,39 +151,35 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .race-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        
-        .race-tag { 
-            background: var(--racing-red); color: white; padding: 0.4rem 1.2rem; border-radius: 2px; 
-            font-size: 0.9rem; transform: skewX(-10deg); display: inline-block;
-        }
+        .race-tag { background: var(--racing-red); color: white; padding: 0.4rem 1.2rem; border-radius: 2px; font-size: 0.9rem; transform: skewX(-10deg); display: inline-block;}
         .race-tag span { display: block; transform: skewX(10deg); }
         .race-title { font-size: 2.2rem; margin-bottom: 0.5rem; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         .race-details { display: flex; gap: 2rem; color: var(--silver); font-size: 1rem; flex-wrap: wrap; font-weight: 700; align-items: center;}
-
-        /* Timer Discret */
         #raceTimer span { display: inline-flex; align-items: center; gap: 8px; }
 
-        /* Événements de la semaine */
+        /* ============================================================
+           CARTES DES OPENS RÉGULIERS
+        ============================================================ */
         .events-section { padding: 2rem 0 4rem; }
         .section-title { font-size: 2.5rem; margin-bottom: 2rem; display: inline-block; position: relative; }
         .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 60px; height: 4px; background: var(--racing-red); }
         
         .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-        
         .event-card { background: var(--racing-card); border-radius: 8px; overflow: hidden; border: 2px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
         .event-card:hover { transform: translateY(-5px); border-color: var(--silver); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); }
-        .event-img-container { height: 140px; background-size: cover; background-position: center; position: relative; border-bottom: 4px solid var(--racing-red); }
+        .event-img-container { height: 140px; background-size: cover; background-position: center; position: relative; border-bottom: 4px solid var(--racing-red); background-color: #0A0A0F;}
         .event-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(11,15,25,0.9), transparent); }
-        
         .event-day-badge { position: absolute; top: 10px; right: 10px; background: white; color: black; padding: 0.3rem 1rem; border-radius: 2px; font-size: 0.85rem; z-index: 2; transform: skewX(-10deg);}
         
-        .event-body { padding: 1.5rem; }
+        .event-body { padding: 1.5rem; display: flex; flex-direction: column; height: 100%;}
         .event-title-card { font-size: 1.5rem; color: white; margin-bottom: 1.2rem; }
-        .event-info-list { display: flex; flex-direction: column; gap: 0.8rem; }
+        .event-info-list { display: flex; flex-direction: column; gap: 0.8rem; flex-grow: 1; }
         .event-info-row { display: flex; align-items: center; gap: 0.8rem; color: var(--racing-gray); font-size: 0.95rem; font-weight: 600;}
         .event-icon { width: 20px; text-align: center; opacity: 0.9; }
 
-        /* Charte / Règles */
+        /* ============================================================
+           SECTION CHARTE / ESPRIT
+        ============================================================ */
         .features { padding: 4rem 0; background: rgba(0, 0, 0, 0.4); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);}
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .feature-card { background: var(--racing-card); border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem; transition: all 0.3s; }
@@ -193,7 +188,7 @@
         .feature-card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: white;}
         .feature-card p { color: var(--racing-gray); font-size: 0.95rem; }
 
-        /* Graphique Sparkline ELO */
+        /* Graphique Sparkline ELO (CSS) */
         .elo-sparkline { display: flex; align-items: flex-end; height: 50px; gap: 4px; margin-top: 1.5rem; padding-bottom: 5px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); position: relative; }
         .spark-bar { flex: 1; background: rgba(255, 255, 255, 0.1); border-radius: 2px 2px 0 0; transition: height 1s ease; }
         .spark-bar:nth-child(1) { height: 20%; }
@@ -209,30 +204,22 @@
         ============================================================ */
         .discord-section { padding: 4rem 0; }
 
-        /* Compteur hero dynamique */
+        /* Compteur dynamique sous l'icône micro */
         .discord-live-count {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(88, 101, 242, 0.12);
-            border: 1px solid rgba(88, 101, 242, 0.3);
-            padding: 0.35rem 0.9rem; border-radius: 50px;
-            font-size: 0.85rem; font-weight: 700;
-            font-family: 'Titillium Web', sans-serif;
-            font-style: normal; text-transform: none;
-            margin-top: 0.4rem; color: #a5b4fc;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            background: rgba(88, 101, 242, 0.12); border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700;
+            font-family: 'Titillium Web', sans-serif; font-style: normal; margin-top: 0.8rem; color: #a5b4fc;
         }
         .discord-live-count .dot-online {
-            width: 8px; height: 8px; background: var(--success);
-            border-radius: 50%; box-shadow: 0 0 8px var(--success);
+            width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 8px var(--success);
             animation: blink 1.2s infinite; flex-shrink: 0;
         }
 
-        /* Bannière principale */
         .discord-banner {
             background: linear-gradient(135deg, rgba(88, 101, 242, 0.08) 0%, rgba(11, 15, 25, 0.9) 100%);
-            border: 2px solid rgba(88, 101, 242, 0.25);
-            border-radius: 8px;
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 3rem; padding: 3rem; align-items: start;
+            border: 2px solid rgba(88, 101, 242, 0.25); border-radius: 8px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 3rem; align-items: start;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         @media (max-width: 900px) { .discord-banner { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; } }
@@ -242,158 +229,83 @@
         .discord-info > p { color: var(--racing-gray); font-size: 1rem; margin-bottom: 1.8rem; }
 
         .discord-features { list-style: none; margin-bottom: 2rem; }
-        .discord-features li {
-            margin-bottom: 0.9rem; font-size: 1rem;
-            display: flex; align-items: center; gap: 0.8rem;
-            font-weight: 600; color: white;
-            font-family: 'Titillium Web', sans-serif;
-            font-style: normal; text-transform: none;
-        }
-        .discord-features li span {
-            background: rgba(88, 101, 242, 0.2); padding: 0.35rem 0.45rem;
-            border-radius: 4px; font-size: 1.1rem; flex-shrink: 0;
-        }
+        .discord-features li { margin-bottom: 0.9rem; font-size: 1rem; display: flex; align-items: center; gap: 0.8rem; font-weight: 600; color: white; font-family: 'Titillium Web', sans-serif; font-style: normal; text-transform: none; }
+        .discord-features li span { background: rgba(88, 101, 242, 0.2); padding: 0.35rem 0.45rem; border-radius: 4px; font-size: 1.1rem; flex-shrink: 0; }
 
         .btn-discord-large {
             display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem;
             background: var(--discord); color: white; padding: 0.9rem 2rem; border-radius: 4px;
-            font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic;
-            font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
-            text-decoration: none; transition: all 0.3s; border: 2px solid transparent;
+            text-decoration: none; transition: all 0.3s; border: 2px solid transparent; letter-spacing: 1px; font-size: 1rem;
         }
-        .btn-discord-large:hover {
-            background: transparent; border-color: var(--discord); color: white;
-            transform: translateY(-3px); box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3);
-        }
+        .btn-discord-large:hover { background: transparent; border-color: var(--discord); color: white; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3); }
 
-        /* ── Widget custom (remplace l'iframe) ── */
+        /* WIDGET CUSTOM DISCORD (Remplace l'Iframe par notre propre HTML) */
         .discord-custom-widget {
-            background: #1e2233; border-radius: 8px;
-            border: 1px solid rgba(88, 101, 242, 0.2);
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #1e2233; border-radius: 8px; border: 1px solid rgba(88, 101, 242, 0.2);
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
-        /* Header widget */
         .dcw-header {
-            background: linear-gradient(135deg, #2a2f45 0%, #1a1f35 100%);
-            padding: 1.2rem 1.5rem;
-            display: flex; align-items: center; gap: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: linear-gradient(135deg, #2a2f45 0%, #1a1f35 100%); padding: 1.2rem 1.5rem;
+            display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        .dcw-avatar {
-            width: 48px; height: 48px; border-radius: 50%;
-            background: var(--racing-red);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; flex-shrink: 0;
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-        .dcw-server-name {
-            font-family: 'Montserrat', sans-serif; font-weight: 900;
-            font-style: italic; font-size: 1.1rem; color: white;
-        }
-        .dcw-counts {
-            margin-top: 0.2rem;
-            display: flex; gap: 1rem; font-size: 0.82rem;
-            font-family: 'Titillium Web', sans-serif; font-style: normal;
-        }
+        .dcw-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--racing-red); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.1); }
+        .dcw-counts { margin-top: 0.2rem; display: flex; gap: 1rem; font-size: 0.82rem; font-family: 'Titillium Web', sans-serif; font-style: normal; }
         .dcw-count-item { display: flex; align-items: center; gap: 0.4rem; color: var(--racing-gray); }
         .dcw-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
         .dcw-dot--online { background: var(--success); box-shadow: 0 0 6px var(--success); }
         .dcw-dot--members { background: #747f8d; }
 
-        /* Body widget */
         .dcw-body { padding: 1rem 1.2rem; }
-
-        .dcw-section-label {
-            font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
-            text-transform: uppercase; color: var(--racing-gray);
-            font-family: 'Titillium Web', sans-serif; font-style: normal;
-            margin-bottom: 0.6rem; margin-top: 0.8rem;
-        }
-
-        /* Vocal channels */
-        .dcw-voice-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-
-        .dcw-voice-channel {
-            background: rgba(255,255,255,0.03);
-            border-radius: 4px; padding: 0.5rem 0.8rem;
-            display: flex; align-items: center; gap: 0.6rem;
-            font-size: 0.88rem; color: var(--racing-gray);
-            font-family: 'Titillium Web', sans-serif; font-style: normal;
-            transition: background 0.2s;
-        }
-        .dcw-voice-channel.has-users {
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            color: white;
-        }
-        .dcw-voice-icon { font-size: 0.9rem; opacity: 0.6; }
-        .dcw-voice-channel.has-users .dcw-voice-icon { opacity: 1; }
-        .dcw-voice-users { margin-left: auto; display: flex; gap: 0.3rem; align-items: center; }
-        .dcw-user-avatar {
-            width: 20px; height: 20px; border-radius: 50%;
-            background: #5865F2; font-size: 0.6rem;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1); color: white; font-weight: 700;
-        }
-        .dcw-user-count-badge {
-            font-size: 0.75rem; color: var(--success);
-            font-weight: 700; background: rgba(16,185,129,0.15);
-            padding: 0.1rem 0.4rem; border-radius: 50px;
-        }
-
-        /* Prochain event Sesh */
+        .dcw-section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--racing-gray); font-family: 'Titillium Web', sans-serif; font-style: normal; margin-bottom: 0.6rem; margin-top: 0.5rem; }
+        
+        /* -----------------------------------
+           STYLE DU FAUX WIDGET SESH
+        ----------------------------------- */
         .dcw-next-event {
             background: rgba(227, 24, 40, 0.06);
             border: 1px solid rgba(227, 24, 40, 0.2);
             border-radius: 6px; padding: 0.9rem 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         .dcw-event-title {
             font-family: 'Montserrat', sans-serif; font-weight: 900;
             font-style: italic; font-size: 1rem; color: white; margin-bottom: 0.3rem;
         }
-        .dcw-event-meta { font-size: 0.82rem; color: var(--racing-gray); font-style: normal; }
-        .dcw-event-attendees {
-            display: flex; gap: 1rem; margin-top: 0.6rem; font-size: 0.8rem;
-        }
-        .dcw-att-yes { color: var(--success); font-weight: 700; }
-        .dcw-att-maybe { color: var(--gold); font-weight: 700; }
-        .dcw-att-no { color: var(--racing-gray); }
+        .dcw-event-meta { font-size: 0.82rem; color: var(--racing-gray); font-style: normal; font-family: 'Titillium Web', sans-serif; }
+        .dcw-event-attendees { display: flex; gap: 1rem; margin-top: 0.6rem; font-size: 0.8rem; font-family: 'Titillium Web', sans-serif; font-weight: 700;}
 
-        /* Footer widget */
-        .dcw-footer {
-            padding: 0.8rem 1.2rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex; justify-content: center;
+        /* Salons vocaux Discord */
+        .dcw-voice-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+        .dcw-voice-channel {
+            background: rgba(255,255,255,0.03); border-radius: 4px; padding: 0.6rem 0.8rem;
+            display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; font-weight: 600; color: white;
+            font-family: 'Titillium Web', sans-serif; font-style: normal; transition: background 0.2s;
         }
-        .dcw-join-btn {
-            display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-            background: var(--discord); color: white; padding: 0.65rem 1.5rem;
-            border-radius: 4px; font-family: 'Montserrat', sans-serif;
-            font-weight: 900; font-style: italic; font-size: 0.9rem;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            text-decoration: none; transition: all 0.3s; border: 2px solid transparent;
-            width: 100%;
-        }
-        .dcw-join-btn:hover { background: transparent; border-color: var(--discord); }
+        .dcw-voice-channel:hover { background: rgba(255,255,255,0.06); }
+        .dcw-voice-icon { font-size: 1rem; opacity: 0.7; }
         
-        /* Classement & Iframe */
-        .classement-section { padding: 4rem 0; }
-        .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
-        .sheet-tab-btn {
-            background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.1);
-            color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 4px;
-            cursor: pointer; transition: all 0.3s ease; font-size: 1rem;
+        .new-badge {
+            background: var(--discord); color: white; font-size: 0.65rem; padding: 0.15rem 0.4rem;
+            border-radius: 4px; font-weight: 800; font-family: 'Titillium Web', sans-serif; font-style: normal;
+            animation: blink-badge 2s infinite; letter-spacing: 0.5px; text-transform: uppercase;
         }
+        @keyframes blink-badge { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .dcw-footer { padding: 1rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: center; }
+        .dcw-join-btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem; background: var(--discord); color: white; padding: 0.65rem 1.5rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s; border: 2px solid transparent; width: 100%; }
+        .dcw-join-btn:hover { background: transparent; border-color: var(--discord); }
+
+        /* ============================================================
+           CLASSEMENT IFRAME (TABLEAUX GOOGLE SHEETS)
+        ============================================================ */
+        .classement-section { padding: 4rem 0; background: rgba(0, 0, 0, 0.3);}
+        .sheet-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .sheet-tab-btn { background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.1); color: var(--racing-gray); padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; }
         .sheet-tab-btn:hover { background: rgba(225, 24, 40, 0.1); color: white; }
         .sheet-tab-btn.active { background: var(--racing-red); color: white; border-color: var(--racing-red); box-shadow: 0 4px 15px rgba(227, 24, 40, 0.4); }
-
         .sheet-container { background: var(--racing-card); border-radius: 8px; border: 2px solid rgba(255, 255, 255, 0.05); overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); -webkit-overflow-scrolling: touch; }
         .sheet-iframe { width: 100%; height: 700px; border: none; display: block; border-radius: 8px; }
 
-        /* Footer */
         footer { background: #000000; border-top: 4px solid var(--racing-card); padding: 3rem 0; text-align: center; margin-top: 2rem; }
         .footer-logo { font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: -1px; }
         .footer-logo span { color: var(--racing-red); }
@@ -401,17 +313,13 @@
         .social-links a { color: var(--racing-gray); text-decoration: none; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; transition: color 0.3s; }
         .social-links a:hover { color: var(--silver); }
         .copyright { color: rgba(255,255,255,0.3); font-size: 0.9rem; margin-top: 1rem; }
-
-        @media (max-width: 768px) {
-            .category-card { flex-direction: column; text-align: center; }
-            .channel-tags { justify-content: center; }
-        }
     </style>
 </head>
 <body>
     <div class="bg-grid"></div>
     <div class="glow-red"></div>
 
+    <!-- HEADER / NAVIGATION -->
     <header>
         <div class="container">
             <nav role="navigation">
@@ -432,7 +340,7 @@
     </header>
 
     <main>
-        <!-- HERO -->
+        <!-- HERO (ACCUEIL) -->
         <section class="hero" id="accueil">
             <div class="container">
                 <div class="hero-badge"><span><span class="live-dot"></span> Serveur Discord Ouvert</span></div>
@@ -451,14 +359,14 @@
                     <article class="stat-card">
                         <span class="stat-icon">🎙️</span>
                         <span class="stat-label">Discord Actif</span>
-                        <div class="discord-live-count" id="heroMemberCount">
+                        <div class="discord-live-count">
                             <span class="dot-online"></span>
                             <span id="heroOnlineCount">...</span> en ligne
                         </div>
                     </article>
                 </div>
 
-                <!-- MAIN EVENT (WEEKEND SPECIAL) -->
+                <!-- MAIN EVENT (WEEKEND SPECIAL) EN HAUT -->
                 <div class="next-race" id="img-weekend_special">
                     <div class="race-header">
                         <span class="race-tag"><span>🏆 L'Événement du Week-end</span></span>
@@ -474,20 +382,21 @@
                     </div>
 
                     <div style="margin-top: 2rem;">
-                        <a id="link-weekend_special" href="https://discord.gg/dREZzRbHKG" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
+                        <!-- Le lien sera injecté par le JS -->
+                        <a id="link-weekend_special" href="#" class="btn-action" target="_blank">S'inscrire à l'Event (Discord)</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROGRAMME DE LA SEMAINE -->
+        <!-- PROGRAMME DES OPENS -->
         <section class="events-section" id="programme">
             <div class="container">
                 <h2 class="section-title">Nos Opens Réguliers</h2>
                 <p style="color: var(--racing-gray); margin-bottom: 3rem;">Des courses sans prise de tête les soirs de semaine pour rouler ensemble, tester des setups et s'améliorer.</p>
 
                 <div class="events-grid">
-                    <!-- LUNDI -->
+                    <!-- CARTE LUNDI -->
                     <article class="event-card" id="card-monday_open">
                         <div id="img-monday_open" class="event-img-container">
                             <span id="day-monday_open" class="event-day-badge">LUNDI</span>
@@ -503,11 +412,11 @@
                                     <span id="status-monday_open" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-monday_open" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-monday_open" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- MERCREDI -->
+                    <!-- CARTE MERCREDI -->
                     <article class="event-card" id="card-wednesday_sprint">
                         <div id="img-wednesday_sprint" class="event-img-container">
                             <span id="day-wednesday_sprint" class="event-day-badge">MERCREDI</span>
@@ -523,11 +432,11 @@
                                     <span id="status-wednesday_sprint" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-wednesday_sprint" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-wednesday_sprint" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
 
-                    <!-- VENDREDI -->
+                    <!-- CARTE VENDREDI -->
                     <article class="event-card" id="card-friday_fun">
                         <div id="img-friday_fun" class="event-img-container">
                             <span id="day-friday_fun" class="event-day-badge">VENDREDI</span>
@@ -543,14 +452,14 @@
                                     <span id="status-friday_fun" style="font-weight: 700;">⏳ Chargement...</span>
                                 </div>
                             </div>
-                            <a id="link-friday_fun" href="https://discord.gg/dREZzRbHKG" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
+                            <a id="link-friday_fun" href="#" class="btn-action btn-card" target="_blank">Rejoindre la grille</a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- L'ESPRIT -->
+        <!-- NOTRE ESPRIT / CHARTE -->
         <section class="features" id="charte">
             <div class="container">
                 <h2 class="section-title">L'Esprit Turbo&Co</h2>
@@ -587,13 +496,12 @@
             </div>
         </section>
 
-        <!-- SECTION COMMUNAUTÉ DISCORD (LE PADDOCK) -->
+        <!-- SECTION DISCORD (LE PADDOCK) -->
         <section class="discord-section" id="communaute">
             <div class="container">
                 <h2 class="section-title">Le Paddock</h2>
 
                 <div class="discord-banner">
-                    <!-- COLONNE GAUCHE : texte + CTA -->
                     <div class="discord-info">
                         <h2>LE PADDOCK NE DORT JAMAIS</h2>
                         <p>Le Simracing, ça se vit ensemble. Retrouvez nos pilotes en ligne tous les soirs pour discuter setups, débriefs de course, ou juste refaire le monde au paddock.</p>
@@ -613,10 +521,8 @@
                         </a>
                     </div>
 
-                    <!-- COLONNE DROITE : widget custom -->
-                    <div class="discord-custom-widget" id="discordWidget">
-
-                        <!-- Header -->
+                    <!-- WIDGET CUSTOM DISCORD (Remplace l'Iframe par le design HTML/CSS) -->
+                    <div class="discord-custom-widget">
                         <div class="dcw-header">
                             <div class="dcw-avatar">🏎️</div>
                             <div>
@@ -634,33 +540,46 @@
                             </div>
                         </div>
 
-                        <!-- Body -->
                         <div class="dcw-body">
-
-                            <!-- Prochain event Sesh (statique, mis à jour depuis Sheets) -->
-                            <div class="dcw-section-label">📅 Prochain event</div>
+                            <!-- ==========================================
+                                 FAUX WIDGET SESH : PROCHAIN EVENT
+                                 Généré par les données du Sheets !
+                            =========================================== -->
+                            <div class="dcw-section-label">📅 PROCHAIN EVENT</div>
                             <div class="dcw-next-event" id="dcwNextEvent">
+                                <!-- ID JS pour injection dynamique -->
                                 <div class="dcw-event-title" id="dcwEventTitle">Chargement...</div>
                                 <div class="dcw-event-meta" id="dcwEventMeta">...</div>
                                 <div class="dcw-event-attendees">
-                                    <span class="dcw-att-yes" id="dcwAttYes">✅ 0 inscrits</span>
-                                    <span class="dcw-att-maybe" id="dcwAttMaybe">🤔 0 peut-être</span>
+                                    <span id="dcwAttYes">✅ En attente...</span>
+                                    <span style="color: var(--gold);">🤔 0 peut-être</span>
                                 </div>
                             </div>
 
-                            <!-- Salons vocaux dynamiques -->
-                            <div class="dcw-section-label">🔊 Salons vocaux</div>
-                            <div class="dcw-voice-list" id="dcwVoiceList">
-                                <!-- Injecté par JS -->
+                            <div class="dcw-section-label">📍 SALONS ÉVÉNEMENTS</div>
+                            <div class="dcw-voice-list">
                                 <div class="dcw-voice-channel">
                                     <span class="dcw-voice-icon">🔊</span>
-                                    <span style="color:var(--racing-gray);font-size:0.85rem;font-style:italic">Chargement...</span>
+                                    <span>🏆 Evenement-du-Week-end</span>
+                                    <span class="new-badge" style="margin-left:auto; font-size:0.65rem;">A VENIR</span>
+                                </div>
+                                <div class="dcw-voice-channel">
+                                    <span class="dcw-voice-icon">🔊</span>
+                                    <span>⏱️ Open Lundi</span>
+                                    <span class="new-badge" style="margin-left:auto; font-size:0.65rem;">NOUVEAU</span>
+                                </div>
+                                <div class="dcw-voice-channel">
+                                    <span class="dcw-voice-icon">🔊</span>
+                                    <span>⏱️ Open Mercredi</span>
+                                    <span class="new-badge" style="margin-left:auto; font-size:0.65rem;">NOUVEAU</span>
+                                </div>
+                                <div class="dcw-voice-channel">
+                                    <span class="dcw-voice-icon" style="opacity: 0.8; font-weight: bold; margin-left: 2px;">#</span>
+                                    <span>⏱️ Open Vendredi</span>
                                 </div>
                             </div>
-
                         </div>
 
-                        <!-- Footer -->
                         <div class="dcw-footer">
                             <a href="https://discord.gg/dREZzRbHKG" target="_blank" rel="noopener" class="dcw-join-btn">
                                 <svg width="18" height="18" viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true">
@@ -674,7 +593,7 @@
             </div>
         </section>
 
-        <!-- CLASSEMENT & BOUTONS EXTERNES -->
+        <!-- CLASSEMENT & BOUTONS IFRAME -->
         <section class="classement-section" id="classement">
             <div class="container">
                 <h2 class="section-title">Hall of Fame</h2>
@@ -700,63 +619,97 @@
     <footer>
         <div class="container">
             <div class="footer-logo">TURBO<span>&CO</span></div>
-            <p style="color: var(--racing-gray); margin-bottom: 2rem;">Communauté Simracing Le Mans Francophone</p>
+            <p style="color: var(--racing-gray); margin-bottom: 2rem;">Communauté Simracing Francophone</p>
             <nav class="social-links" aria-label="Réseaux sociaux">
                 <a href="https://discord.gg/dREZzRbHKG" target="_blank">Discord</a>
                 <a href="#" target="_blank">Twitch</a>
                 <a href="https://www.youtube.com/@Turbo-And-Co" target="_blank">Youtube</a>
             </nav>
-            <p class="copyright">© 2026 Turbo&Co. Non affilié à Le Mans Ultimate.</p>
+            <p class="copyright">© 2026 Turbo&Co.</p>
         </div>
     </footer>
 
     <script>
-// ----------------------------------------------------
-        // LECTURE DYNAMIQUE DU GOOGLE SHEETS - CSV 
+        // ----------------------------------------------------
+        // LECTURE DYNAMIQUE DU GOOGLE SHEETS
         // ----------------------------------------------------
         async function fetchInscriptions() {
-            // 🔴 N'OUBLIE PAS DE METTRE LE LIEN CSV AVEC LE "gid=..." ICI :
-            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?gid=2003087742&single=true&output=csv';
+            // Lien CSV de la feuille "INSCRIPTIONS"
+            const urlCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pub?gid=1162198900&single=true&output=csv';
 
             try {
                 const response = await fetch(urlCSV);
                 const csvData = await response.text();
                 
-                // 🐛 CORRECTION DU CRASH ICI :
+                // Séparation des lignes proprement
                 const lignes = csvData.split('\n').slice(1); 
 
                 lignes.forEach(ligne => {
+                    // Regex avancée pour ne pas couper au milieu des mots s'il y a des virgules
                     const col = ligne.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
 
                     if (col.length >= 9) {
-                        const id = col[0]; 
+                        const id = col[0]; // Ex: "weekend_special", "monday_open"
 
+                        // Si l'ID existe sur la page HTML, on l'alimente
                         if (document.getElementById('title-' + id)) {
-                            if(document.getElementById('day-' + id)) document.getElementById('day-' + id).innerText = col[1];    
-                            document.getElementById('title-' + id).innerText = col[2];  
-                            document.getElementById('time-' + id).innerText = col[3];   
-                            document.getElementById('cat-' + id).innerText = col[4];    
-                            document.getElementById('track-' + id).innerText = col[5];  
+                            
+                            // TEXTES (Cartes)
+                            document.getElementById('day-' + id).innerText = col[1] || "TBA";    
+                            document.getElementById('title-' + id).innerText = col[2] || "Événement à venir";  
+                            document.getElementById('time-' + id).innerText = col[3] || "Horaires non définis";   
+                            document.getElementById('cat-' + id).innerText = col[4] || "-";    
+                            document.getElementById('track-' + id).innerText = col[5] || "-";  
 
-                            let imgUrl = col[6];
-                            if(imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) imgUrl += "?raw=true";
+                            // GESTION IMAGE & GITHUB RAW
+                            let imgUrl = col[6] ? col[6].trim() : "";
+                            if (imgUrl && imgUrl.includes("github.com") && !imgUrl.includes("?raw=true")) {
+                                imgUrl += "?raw=true";
+                            }
+                            if (!imgUrl || imgUrl === "?raw=true" || imgUrl === "") {
+                                imgUrl = "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop";
+                            }
 
                             const imgContainer = document.getElementById('img-' + id);
+                            
+                            // --- CAS PARTICULIER : L'ÉVÉNEMENT DU WEEK-END ---
                             if(id === 'weekend_special') {
+                                // 1. L'image de la grande bannière en haut
                                 imgContainer.style.backgroundImage = `linear-gradient(to right, rgba(11, 15, 25, 0.95) 0%, rgba(11, 15, 25, 0.6) 100%), url('${imgUrl}')`;
+                                
+                                // 2. COMMENTAIRE EXPLICATIF : Mise à jour du "Faux" Widget Sesh en bas de page !
+                                // Le script recycle la donnée du weekend_special pour alimenter le Paddock Discord
+                                const dcwTitle = document.getElementById('dcwEventTitle');
+                                const dcwMeta = document.getElementById('dcwEventMeta');
+                                const dcwAttYes = document.getElementById('dcwAttYes');
+                                
+                                if(dcwTitle) dcwTitle.innerText = col[2] || "Événement à venir";
+                                if(dcwMeta) dcwMeta.innerText = '🗓️ ' + (col[3] || "Horaires non définis");
+                                if(dcwAttYes) {
+                                    const statusTxtSesh = col[7] || "En attente";
+                                    dcwAttYes.innerText = statusTxtSesh;
+                                    
+                                    // Application des couleurs "Feu tricolore"
+                                    if(statusTxtSesh.includes('🔴')) dcwAttYes.style.color = '#E31828';
+                                    else if(statusTxtSesh.includes('🟠')) dcwAttYes.style.color = '#FBBF24';
+                                    else if(statusTxtSesh.includes('🟢')) dcwAttYes.style.color = '#10B981';
+                                }
                             } else {
+                                // Cartes Lundi, Mercredi, Vendredi (Classique)
                                 imgContainer.style.backgroundImage = `url('${imgUrl}')`;
                             }
 
+                            // STATUTS & COULEURS (Pour toutes les cartes en haut)
                             const statusEl = document.getElementById('status-' + id);
-                            const statusTxt = col[7];
+                            const statusTxt = col[7] || "En attente";
                             statusEl.innerText = statusTxt;
 
                             if(statusTxt.includes('🔴')) statusEl.style.color = '#E31828';
                             else if(statusTxt.includes('🟠')) statusEl.style.color = '#FBBF24';
                             else if(statusTxt.includes('🟢')) statusEl.style.color = '#10B981';
 
-                            document.getElementById('link-' + id).href = col[8];
+                            // LIEN BOUTON DISCORD
+                            document.getElementById('link-' + id).href = col[8] || "https://discord.gg/dREZzRbHKG";
                         }
                     }
                 });
@@ -765,15 +718,17 @@
             }
         }
 
+        // Lancer la lecture des données Google Sheets
         fetchInscriptions();
 
         // ----------------------------------------------------
-        // NAVIGATION DE L'IFRAME GOOGLE SHEETS
+        // NAVIGATION DE L'IFRAME (CLASSEMENT / DASHBOARD)
         // ----------------------------------------------------
         function changeSheet(type, btnElement) {
             const iframe = document.getElementById('ranking-iframe');
             let url = '';
 
+            // Les GIDs (ID d'onglets) sont placés dynamiquement
             if (type === 'dashboard') {
                 url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQBn4oeHtoxv9akaGvMrCDvMTTV5fTB8WL5nep-a51c8Ggjh6Ejt7yFKlC4ojQ6ZWohNNT-njBqsNR_/pubhtml?gid=1140481306&single=true&widget=false&headers=false&chrome=false&gridlines=false';
             } else if (type === 'classement') {
@@ -782,9 +737,42 @@
 
             iframe.src = url;
 
+            // Retrait de la classe active sur tous les boutons, puis ajout sur le bouton cliqué
             document.querySelectorAll('.sheet-tab-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
         }
+
+        // ----------------------------------------------------
+        // DISCORD — COMPTEUR MEMBRES TEMPS RÉEL
+        // ----------------------------------------------------
+        const DISCORD_INVITE  = 'dREZzRbHKG';         
+        
+        async function fetchDiscordCounts() {
+            try {
+                // Interrogation silencieuse de l'API d'invitation Discord
+                const res  = await fetch(`https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`);
+                if (!res.ok) return;
+                const data = await res.json();
+
+                const online = data.approximate_presence_count ?? '?';
+                const total  = data.approximate_member_count  ?? '?';
+
+                // Injection des chiffres dans la carte Stats et le Paddock
+                const heroEl = document.getElementById('heroOnlineCount');
+                if (heroEl) heroEl.textContent = online;
+
+                const dcwO = document.getElementById('dcwOnline');
+                const dcwT = document.getElementById('dcwTotal');
+                if (dcwO) dcwO.textContent = online;
+                if (dcwT) dcwT.textContent = total;
+
+            } catch (e) {
+                console.warn('Discord counts unavailable:', e);
+            }
+        }
+        
+        fetchDiscordCounts();
+        setInterval(fetchDiscordCounts, 5 * 60 * 1000); // Actualisation toutes les 5 minutes
 
         // ----------------------------------------------------
         // GESTION DU MENU MOBILE
@@ -805,7 +793,7 @@
         });
 
         // ----------------------------------------------------
-        // TIMER DISCRET 
+        // TIMER DE L'EVENT WEEK-END 
         // ----------------------------------------------------
         function updateTimer() {
             const raceDate = new Date('2026-03-28T21:00:00');
@@ -845,7 +833,9 @@
 
         setInterval(updateTimer, 1000); updateTimer();
 
-        // Scroll Animations
+        // ----------------------------------------------------
+        // ANIMATIONS FLUIDES AU SCROLL
+        // ----------------------------------------------------
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
@@ -872,158 +862,6 @@
                 if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
-        // ────────────────────────────────────────────────────
-        // DISCORD — COMPTEUR MEMBRES + WIDGET CUSTOM
-        // ────────────────────────────────────────────────────
-
-        const DISCORD_INVITE  = 'dREZzRbHKG';         // ton code d'invitation
-        const DISCORD_GUILD   = '1166032605062373477'; // ton Guild ID (dans l'URL Discord)
-
-        // ① Compteur membres en temps réel (API invite publique)
-        async function fetchDiscordCounts() {
-            try {
-                const res  = await fetch(`https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`);
-                if (!res.ok) return;
-                const data = await res.json();
-
-                const online = data.approximate_presence_count ?? '?';
-                const total  = data.approximate_member_count  ?? '?';
-
-                // Hero stat card
-                const heroEl = document.getElementById('heroOnlineCount');
-                if (heroEl) heroEl.textContent = online;
-
-                // Widget header
-                const dcwO = document.getElementById('dcwOnline');
-                const dcwT = document.getElementById('dcwTotal');
-                if (dcwO) dcwO.textContent = online;
-                if (dcwT) dcwT.textContent = total;
-
-            } catch (e) {
-                console.warn('Discord counts unavailable:', e);
-            }
-        }
-
-        // ② Salons vocaux dynamiques (API widget — nécessite widget activé dans Paramètres > Widget)
-        async function fetchDiscordVoice() {
-            const list = document.getElementById('dcwVoiceList');
-            if (!list) return;
-
-            try {
-                const res  = await fetch(`https://discord.com/api/guilds/${DISCORD_GUILD}/widget.json`);
-                if (!res.ok) throw new Error('Widget désactivé');
-                const data = await res.json();
-
-                // Canaux vocaux (type 2)
-                const voiceChannels = data.channels || [];
-
-                if (voiceChannels.length === 0) {
-                    list.innerHTML = `<div class="dcw-voice-channel">
-                        <span class="dcw-voice-icon">🔇</span>
-                        <span style="color:var(--racing-gray);font-size:0.85rem">Aucun salon vocal configuré</span>
-                    </div>`;
-                    return;
-                }
-
-                // Membres dans les vocaux
-                const members = data.members || [];
-
-                list.innerHTML = voiceChannels.map(ch => {
-                    // Membres dans ce channel
-                    const inChannel = members.filter(m => m.channel_id === ch.id);
-                    const hasUsers  = inChannel.length > 0;
-
-                    const usersHTML = hasUsers
-                        ? `<div class="dcw-voice-users">
-                            ${inChannel.slice(0, 3).map(m =>
-                                `<div class="dcw-user-avatar" title="${m.username}">
-                                    ${m.username.slice(0,1).toUpperCase()}
-                                </div>`
-                            ).join('')}
-                            ${inChannel.length > 3
-                                ? `<span class="dcw-user-count-badge">+${inChannel.length - 3}</span>`
-                                : ''}
-                          </div>`
-                        : '';
-
-                    return `<div class="dcw-voice-channel ${hasUsers ? 'has-users' : ''}">
-                        <span class="dcw-voice-icon">🔊</span>
-                        <span>${ch.name}</span>
-                        ${hasUsers
-                            ? `<span class="dcw-user-count-badge" style="margin-left:0.4rem">
-                                ${inChannel.length} en vocal
-                               </span>`
-                            : ''}
-                        ${usersHTML}
-                    </div>`;
-                }).join('');
-
-            } catch (e) {
-                // Widget désactivé → fallback gracieux avec canaux statiques connus
-                list.innerHTML = `
-                    <div class="dcw-voice-channel">
-                        <span class="dcw-voice-icon">🔊</span>
-                        <span>open-1</span>
-                    </div>
-                    <div class="dcw-voice-channel">
-                        <span class="dcw-voice-icon">🔊</span>
-                        <span>open-2</span>
-                    </div>
-                    <div class="dcw-voice-channel">
-                        <span class="dcw-voice-icon">🔊</span>
-                        <span>open-3</span>
-                    </div>
-                    <div style="font-size:0.75rem;color:var(--racing-gray);padding:0.3rem 0.8rem;font-style:italic">
-                        Active le widget dans Paramètres Discord pour voir qui est en vocal.
-                    </div>`;
-                console.warn('Discord widget JSON unavailable (widget disabled?):', e);
-            }
-        }
-
-        // ③ Prochain event — lu depuis l'onglet INSCRIPTION du Sheets
-        //    (titre = col[2], horaires = col[3], statut = col[7])
-        //    On recycle fetchInscriptions() et on injecte dans le widget aussi
-        function updateWidgetEvent() {
-            const titleEl  = document.getElementById('title-weekend_special');
-            const timeEl   = document.getElementById('time-weekend_special');
-            const statusEl = document.getElementById('status-weekend_special');
-
-            if (!titleEl) return;
-
-            const wcTitle  = document.getElementById('dcwEventTitle');
-            const wcMeta   = document.getElementById('dcwEventMeta');
-            const wcStatus = document.getElementById('dcwAttYes');
-
-            if (wcTitle && titleEl.textContent && titleEl.textContent !== 'Chargement de l\'événement...') {
-                wcTitle.textContent = titleEl.textContent;
-            }
-            if (wcMeta && timeEl) {
-                wcMeta.textContent = '🗓️ ' + (timeEl.textContent || '...');
-            }
-            if (wcStatus && statusEl) {
-                wcStatus.textContent = statusEl.textContent;
-                // Couleur du statut
-                if (statusEl.textContent.includes('🟢')) wcStatus.style.color = 'var(--success)';
-                else if (statusEl.textContent.includes('🟠')) wcStatus.style.color = 'var(--gold)';
-                else if (statusEl.textContent.includes('🔴')) wcStatus.style.color = 'var(--racing-red)';
-            }
-
-            // Masque le champ "peut-être" si pas utile
-            const attMaybe = document.getElementById('dcwAttMaybe');
-            if (attMaybe) attMaybe.style.display = 'none';
-        }
-
-        // Init + rafraîchissement toutes les 5 minutes
-        fetchDiscordCounts();
-        fetchDiscordVoice();
-        // Synchro widget après chargement Sheets (délai pour laisser fetchInscriptions finir)
-        setTimeout(updateWidgetEvent, 2500);
-
-        setInterval(() => {
-            fetchDiscordCounts();
-            fetchDiscordVoice();
-        }, 5 * 60 * 1000);
-
     </script>
 </body>
 </html>
